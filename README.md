@@ -1,4 +1,4 @@
 # forums
 forums
 
-Šī būs adrese matemātikas cienītājiem
+Šī būs adrese matemātikas cienītājiem!
