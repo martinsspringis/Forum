@@ -1,0 +1,20 @@
+%h1= @article.author
+%h1= @article.title
+%p= @article.article
+
+=link_to "Edit article", edit_article_path(@article)
+=link_to "Delete article", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}
+
+
+= render "answers/form"
+
+
+-if @article.answers.count != 0
+  %table
+    %tr
+      %th= t(:author)
+      %th= t(:answer)
+    - @article.answers.each do |answer|
+      %tr
+        %td= answer.author
+        %td= answer.body

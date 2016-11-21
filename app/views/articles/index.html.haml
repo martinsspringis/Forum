@@ -1,10 +1,12 @@
-%h1 Hello articles#index
+%h1 Forum
 
-=link_to 'izveido rakstu', new_article_path
+=link_to t(:new_article), new_article_path
 
 %table
--@articles.each do |article|
-	%tr
-		%td= article.author
-		%td= article.title
-		%td= article.article
+  %tr
+  %th= t(:article)
+  %th= t(:author)
+  -@articles.each do |article|
+    %tr
+      %td= link_to article.title, article_path(article)
+      %td= article.author
