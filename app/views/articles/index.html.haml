@@ -1,0 +1,10 @@
+%h1 Hello articles#index
+
+=link_to 'izveido rakstu', new_article_path
+
+%table
+-@articles.each do |article|
+	%tr
+		%td= article.author
+		%td= article.title
+		%td= article.article
