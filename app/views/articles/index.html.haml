@@ -6,7 +6,9 @@
   %tr
   %th= t(:article)
   %th= t(:author)
+  %th= t(:replies)
   -@articles.each do |article|
     %tr
       %td= link_to article.title, article_path(article)
       %td= article.author
+      %td= article.replies.count()

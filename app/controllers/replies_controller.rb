@@ -1,10 +1,10 @@
-class AnswersController < ApplicationController
+class RepliesController < ApplicationController
 	before_filter :load_article
 
 	def create
-		@answer = @article.answers.build(answer_params)
+		@reply = @article.replies.build(reply_params)
 
-		if @answer.save
+		if @reply.save
 			redirect_to article_path(@article)
 		else
 			render "articles/show"
@@ -12,8 +12,8 @@ class AnswersController < ApplicationController
 	end
 
 	private
-		def answer_params
-			params.require(:answer).permit(:author, :body)
+		def reply_params
+			params.require(:reply).permit(:author, :body)
 		end
 
 		def load_article

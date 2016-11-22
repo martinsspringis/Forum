@@ -6,15 +6,15 @@
 =link_to "Delete article", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}
 
 
-= render "answers/form"
+= render "replies/form"
 
 
--if @article.answers.count != 0
+-if @article.replies.count != 0
   %table
     %tr
       %th= t(:author)
-      %th= t(:answer)
-    - @article.answers.each do |answer|
+      %th= t(:reply)
+    - @article.replies.each do |reply|
       %tr
-        %td= answer.author
-        %td= answer.body
+        %td= reply.author
+        %td= reply.body

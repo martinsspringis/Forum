@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
 
 	def show
 		@article = Article.find(params[:id])
-		@answer = @article.answers.build
+		@reply = @article.replies.build
 	end
 
 	def new

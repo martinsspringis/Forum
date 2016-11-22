@@ -1,4 +1,4 @@
-class Answer < ActiveRecord::Base
+class Reply < ActiveRecord::Base
   belongs_to :article
 
   validates :author, presence: true

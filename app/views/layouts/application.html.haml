@@ -10,4 +10,13 @@
 
     =link_to "home", articles_path
 
+    -if user_signed_in?
+      =link_to t(:log_out), destroy_user_session_path, method: :delete
+    -else
+      =link_to t(:log_in), new_user_session_path
+      =link_to t(:sign_up), new_user_registration_path
+    
+    %p.notice= notice
+    %p.alert= alert
+
     = yield

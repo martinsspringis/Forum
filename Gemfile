@@ -25,9 +25,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 #postgres gems
 gem 'pg'
-
 #haml gem
 gem 'haml'
+#gem for autentification
+gem 'devise'
 
 
 # Use ActiveModel has_secure_password
