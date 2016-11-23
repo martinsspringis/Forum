@@ -1,0 +1,8 @@
+= "hello, #{@record.email}!"
+%br
+%br
+= "Thank you for registration in our website!"
+%br
+= "To confirm your account, click on this link: "
+
+=link_to "activate", "http://localhost:3000/users/confirmation?confirmation_token=#{@token}"

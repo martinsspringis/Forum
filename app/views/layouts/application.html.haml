@@ -11,6 +11,7 @@
     =link_to "home", articles_path
 
     -if user_signed_in?
+      = "hello, #{current_user.email}"
       =link_to t(:log_out), destroy_user_session_path, method: :delete
     -else
       =link_to t(:log_in), new_user_session_path
