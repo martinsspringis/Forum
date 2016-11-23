@@ -29,6 +29,8 @@ gem 'pg'
 gem 'haml'
 #gem for autentification
 gem 'devise'
+#for file attachments
+gem 'paperclip'
 
 
 # Use ActiveModel has_secure_password

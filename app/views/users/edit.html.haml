@@ -1,0 +1,25 @@
+%h1 edit profile
+
+-if @user.asset?
+  = image_tag @user.asset.url(:large)
+
+
+=form_for(@user) do |f|
+  .field
+    = f.label "Name: "
+    = f.text_field :name 
+
+  .field
+    = f.label "Surname: "
+    = f.text_field :surname  
+
+  .field
+    = f.label "Nickname: "
+    = f.text_field :nickname 
+
+  .field
+    = f.label "Choose photo: "
+    = f.file_field :asset
+
+  .actions
+    = f.submit "Save changes"

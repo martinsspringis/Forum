@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :articles do
     resources :replies
   end
+  resources :users
 
   root 'articles#index'
 
