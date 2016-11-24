@@ -31,6 +31,8 @@ gem 'haml'
 gem 'devise'
 #for file attachments
 gem 'paperclip'
+#for email preview
+gem 'letter_opener', :group => :development
 
 
 # Use ActiveModel has_secure_password
