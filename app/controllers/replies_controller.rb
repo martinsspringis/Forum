@@ -3,6 +3,11 @@ class RepliesController < ApplicationController
 
 	def create
 		@reply = @article.replies.build(reply_params)
+		
+    if user_signed_in?
+		  @reply.user = current_user
+		  @reply.author = current_user.nickname
+	  end
 
 		if @reply.save
 			redirect_to article_path(@article)

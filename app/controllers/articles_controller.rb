@@ -20,6 +20,11 @@ class ArticlesController < ApplicationController
 	def create
 		@article = Article.new(article_params)
 
+		if user_signed_in?
+		  @article.user = current_user
+      @article.author = current_user.nickname
+    end
+
 		if @article.save
 			redirect_to @article
 		else render :new

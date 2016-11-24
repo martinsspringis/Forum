@@ -33,6 +33,8 @@ gem 'devise'
 gem 'paperclip'
 #for email preview
 gem 'letter_opener', :group => :development
+#Annotates Rails/ActiveRecord Models, routes, fixtures, and other based on the database schema
+gem 'annotate'
 
 
 # Use ActiveModel has_secure_password

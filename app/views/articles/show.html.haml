@@ -8,13 +8,19 @@
 
 = render "replies/form"
 
-
 -if @article.replies.count != 0
   %table
     %tr
       %th= t(:author)
       %th= t(:reply)
-    - @article.replies.each do |reply|
+    - @article.replies.order(created_at: :desc).each do |reply|
       %tr
-        %td= reply.author
+        %td
+          -if reply.user.present?
+            = reply.user.nickname
+          -else
+            = reply.author
         %td= reply.body
+        %td{class: "reply_to_reply"}
+          - if reply.persisted?
+            = link_to "reply", new_article_reply_child_path(reply.article, reply)

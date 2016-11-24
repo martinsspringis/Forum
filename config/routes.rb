@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   
   resources :articles do
-    resources :replies
+    resources :replies do
+      resources :children
+    end
   end
   resources :users
 
@@ -62,3 +64,59 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+
+# == Route Map
+#
+#                   Prefix Verb   URI Pattern                                                         Controller#Action
+#         new_user_session GET    /users/sign_in(.:format)                                            devise/sessions#new
+#             user_session POST   /users/sign_in(.:format)                                            devise/sessions#create
+#     destroy_user_session DELETE /users/sign_out(.:format)                                           devise/sessions#destroy
+#            user_password POST   /users/password(.:format)                                           devise/passwords#create
+#        new_user_password GET    /users/password/new(.:format)                                       devise/passwords#new
+#       edit_user_password GET    /users/password/edit(.:format)                                      devise/passwords#edit
+#                          PATCH  /users/password(.:format)                                           devise/passwords#update
+#                          PUT    /users/password(.:format)                                           devise/passwords#update
+# cancel_user_registration GET    /users/cancel(.:format)                                             devise/registrations#cancel
+#        user_registration POST   /users(.:format)                                                    devise/registrations#create
+#    new_user_registration GET    /users/sign_up(.:format)                                            devise/registrations#new
+#   edit_user_registration GET    /users/edit(.:format)                                               devise/registrations#edit
+#                          PATCH  /users(.:format)                                                    devise/registrations#update
+#                          PUT    /users(.:format)                                                    devise/registrations#update
+#                          DELETE /users(.:format)                                                    devise/registrations#destroy
+#        user_confirmation POST   /users/confirmation(.:format)                                       devise/confirmations#create
+#    new_user_confirmation GET    /users/confirmation/new(.:format)                                   devise/confirmations#new
+#                          GET    /users/confirmation(.:format)                                       devise/confirmations#show
+#   article_reply_children GET    /articles/:article_id/replies/:reply_id/children(.:format)          children#index
+#                          POST   /articles/:article_id/replies/:reply_id/children(.:format)          children#create
+#  new_article_reply_child GET    /articles/:article_id/replies/:reply_id/children/new(.:format)      children#new
+# edit_article_reply_child GET    /articles/:article_id/replies/:reply_id/children/:id/edit(.:format) children#edit
+#      article_reply_child GET    /articles/:article_id/replies/:reply_id/children/:id(.:format)      children#show
+#                          PATCH  /articles/:article_id/replies/:reply_id/children/:id(.:format)      children#update
+#                          PUT    /articles/:article_id/replies/:reply_id/children/:id(.:format)      children#update
+#                          DELETE /articles/:article_id/replies/:reply_id/children/:id(.:format)      children#destroy
+#          article_replies GET    /articles/:article_id/replies(.:format)                             replies#index
+#                          POST   /articles/:article_id/replies(.:format)                             replies#create
+#        new_article_reply GET    /articles/:article_id/replies/new(.:format)                         replies#new
+#       edit_article_reply GET    /articles/:article_id/replies/:id/edit(.:format)                    replies#edit
+#            article_reply GET    /articles/:article_id/replies/:id(.:format)                         replies#show
+#                          PATCH  /articles/:article_id/replies/:id(.:format)                         replies#update
+#                          PUT    /articles/:article_id/replies/:id(.:format)                         replies#update
+#                          DELETE /articles/:article_id/replies/:id(.:format)                         replies#destroy
+#                 articles GET    /articles(.:format)                                                 articles#index
+#                          POST   /articles(.:format)                                                 articles#create
+#              new_article GET    /articles/new(.:format)                                             articles#new
+#             edit_article GET    /articles/:id/edit(.:format)                                        articles#edit
+#                  article GET    /articles/:id(.:format)                                             articles#show
+#                          PATCH  /articles/:id(.:format)                                             articles#update
+#                          PUT    /articles/:id(.:format)                                             articles#update
+#                          DELETE /articles/:id(.:format)                                             articles#destroy
+#                    users GET    /users(.:format)                                                    users#index
+#                          POST   /users(.:format)                                                    users#create
+#                 new_user GET    /users/new(.:format)                                                users#new
+#                edit_user GET    /users/:id/edit(.:format)                                           users#edit
+#                     user GET    /users/:id(.:format)                                                users#show
+#                          PATCH  /users/:id(.:format)                                                users#update
+#                          PUT    /users/:id(.:format)                                                users#update
+#                          DELETE /users/:id(.:format)                                                users#destroy
+#                     root GET    /                                                                   articles#index
+#

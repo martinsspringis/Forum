@@ -7,8 +7,12 @@
   %th= t(:article)
   %th= t(:author)
   %th= t(:replies)
-  -@articles.each do |article|
+  -@articles.order(created_at: :desc).each do |article|
     %tr
       %td= link_to article.title, article_path(article)
-      %td= article.author
+      %td
+        -if article.user.present?
+          = article.user.nickname
+        -else
+          = article.author
       %td= article.replies.count()

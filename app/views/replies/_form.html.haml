@@ -8,7 +8,7 @@
       %li= msg
 
 
-= form_for([@article, @article.replies.build]) do |f|
+= form_for([@article, @reply]) do |f|
   .field
     = f.label "Author: "
     = f.text_field :author
