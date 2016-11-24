@@ -1,6 +1,6 @@
 %h1= @article.author
 %h1= @article.title
-%p= @article.article
+%p= @article.content
 
 =link_to "Edit article", edit_article_path(@article)
 =link_to "Delete article", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}
@@ -20,7 +20,8 @@
             = reply.user.nickname
           -else
             = reply.author
-        %td= reply.body
+        %td= reply.content
+        %td= format_time(reply.created_at)
         %td{class: "reply_to_reply"}
           - if reply.persisted?
             = link_to "reply", new_article_reply_child_path(reply.article, reply)

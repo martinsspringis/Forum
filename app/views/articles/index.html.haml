@@ -16,3 +16,4 @@
         -else
           = article.author
       %td= article.replies.count()
+      %td= format_time(article.created_at)

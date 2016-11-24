@@ -33,4 +33,6 @@ end
 #  name                   :string
 #  surname                :string
 #  nickname               :string
+#  warnings               :integer          default(0)
+#  blocked                :boolean          default(FALSE)
 #

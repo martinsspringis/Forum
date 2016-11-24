@@ -18,7 +18,7 @@ class RepliesController < ApplicationController
 
 	private
 		def reply_params
-			params.require(:reply).permit(:author, :body)
+			params.require(:reply).permit(:author, :content)
 		end
 
 		def load_article

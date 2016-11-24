@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  helper FormattingHelper
 
 	def index
 		@articles = Article.all
@@ -51,7 +52,7 @@ class ArticlesController < ApplicationController
 	private
 		
 	def article_params
-		params.require(:article).permit(:author, :title, :article)
+		params.require(:article).permit(:author, :title, :content)
 	end
 
 end

@@ -22,6 +22,20 @@ class User < ActiveRecord::Base
       where(conditions.to_h).first
     end
   end
+
+#dealing with blocked users
+  def account_active?
+    !blocked
+  end
+
+  def active_for_authentication?
+    super && account_active?
+  end
+
+  def inactive_message
+    account_active? ? super : :locked
+  end
+
 end
 
 # == Schema Information
@@ -51,4 +65,6 @@ end
 #  name                   :string
 #  surname                :string
 #  nickname               :string
+#  warnings               :integer          default(0)
+#  blocked                :boolean          default(FALSE)
 #

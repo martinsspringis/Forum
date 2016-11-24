@@ -1,4 +1,6 @@
 class Reply < ActiveRecord::Base
+  include MoralityChecker
+
   belongs_to :article
   belongs_to :user
 
@@ -6,7 +8,9 @@ class Reply < ActiveRecord::Base
   belongs_to :parent
 
   validates :author, presence: true
-  validates :body, presence: true
+  validates :content, presence: true
+
+  before_save :check_morality
 end
 
 # == Schema Information
@@ -16,7 +20,7 @@ end
 #  id         :integer          not null, primary key
 #  article_id :integer
 #  author     :string
-#  body       :text
+#  content    :text
 #  created_at :datetime
 #  updated_at :datetime
 #  user_id    :integer
