@@ -3,7 +3,8 @@
 %p= @article.content
 
 =link_to "Edit article", edit_article_path(@article)
-=link_to "Delete article", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}
+-if current_user == @article.user
+  =link_to "Delete article", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}
 
 
 = render "replies/form"

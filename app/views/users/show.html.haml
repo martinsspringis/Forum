@@ -1,0 +1,23 @@
+%h1= @user.nickname
+
+- if @user.asset?
+  = image_tag @user.asset.url(:medium)
+
+- if @user.blocked
+  %h1 This user has been blocked
+-else
+  %h3= "Name: #{@user.full_name}"
+
+  %h2= "Articles: "
+  
+  %table
+    -unless @articles.any?
+      %tr
+        %td No articles
+    %tr
+      %th Title
+      %th Replies
+    - @articles.each do |article|
+      %tr
+        %td= article.title
+        %td= link_to article.replies.count, article_path(article)

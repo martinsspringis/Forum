@@ -36,6 +36,14 @@ class User < ActiveRecord::Base
     account_active? ? super : :locked
   end
 
+  def full_name
+    if name.present? or surname.present?
+      "#{name} #{surname}"
+    else
+      email
+    end
+  end
+
 end
 
 # == Schema Information
