@@ -1,5 +1,7 @@
 class Article < ActiveRecord::Base
   include MoralityChecker
+  require '/home/roberts/code/forums/app/services/troll_blocker'
+
 
   has_many :replies, dependent: :destroy
 
@@ -10,6 +12,14 @@ class Article < ActiveRecord::Base
   validates :content, presence: true
 
   before_save :check_morality
+  after_save :troll_block
+
+  def troll_block
+  	if user_id  	  
+  		troll_blocker = TrollBlocker.new(user)
+  	  troll_blocker.check_and_proceed
+    end    
+  end
 
 end
 

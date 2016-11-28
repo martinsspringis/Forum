@@ -7,7 +7,6 @@ class TrollBlocker
   	if @user.warnings >= 5
   		@user.blocked = true
   		@user.save
-      redirect_to destory_user_session_path
       puts "success"
     end
   end

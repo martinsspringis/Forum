@@ -1,5 +1,8 @@
+#require '/home/roberts/code/forums/app/services/troll_blocker'
+
 class Reply < ActiveRecord::Base
   include MoralityChecker
+  require '/home/roberts/code/forums/app/services/troll_blocker'
 
   belongs_to :article
   belongs_to :user
@@ -12,6 +15,16 @@ class Reply < ActiveRecord::Base
   validates :content, presence: true
 
   before_save :check_morality
+  after_save :troll_block
+
+  def troll_block
+  	if user_id  	  
+  		troll_blocker = TrollBlocker.new(user)
+  	  troll_blocker.check_and_proceed
+    end    
+  end
+
+
 end
 
 # == Schema Information

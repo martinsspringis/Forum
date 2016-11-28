@@ -11,11 +11,10 @@ module MoralityChecker
     end
 
     if bad_content
-    	user.warnings += 1
-    	if(user.warnings >= 10)
-        user.blocked = true
-    	end
-    	user.save
+      if user.present?
+      	user.warnings += 1
+      	user.save
+      end
     end
 
   end
