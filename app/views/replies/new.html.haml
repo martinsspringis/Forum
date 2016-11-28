@@ -1,0 +1,15 @@
+= form_for ([@article, @reply]) do |f|
+  .field
+    = f.label "Author: "
+    = f.text_field :author
+
+
+  .field
+    = f.hidden_field :parent_id
+
+  .field 
+    = f.label "Reply: "
+    = f.text_area :content
+
+  .action
+    = f.submit "Post"

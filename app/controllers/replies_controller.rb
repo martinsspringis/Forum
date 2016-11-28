@@ -1,6 +1,10 @@
 class RepliesController < ApplicationController
 	before_filter :load_article
 
+  def new
+    @reply = Reply.new(:parent_id => params[:parent_id])
+  end
+
 	def create
 		@reply = @article.replies.build(reply_params)
 		
@@ -18,7 +22,7 @@ class RepliesController < ApplicationController
 
 	private
 		def reply_params
-			params.require(:reply).permit(:author, :content)
+			params.require(:reply).permit(:parent_id, :author, :content)
 		end
 
 		def load_article

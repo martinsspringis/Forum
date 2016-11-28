@@ -4,8 +4,9 @@ class Reply < ActiveRecord::Base
   belongs_to :article
   belongs_to :user
 
-  has_many :children
-  belongs_to :parent
+  #belongs_to :parent, class_name: "Reply"
+  #has_many :children, class_name: "Reply", foreign_key: :parent_id, dependent: :destroy
+  has_ancestry
 
   validates :author, presence: true
   validates :content, presence: true
@@ -24,5 +25,5 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #  user_id    :integer
-#  parent     :integer
+#  ancestry   :string
 #

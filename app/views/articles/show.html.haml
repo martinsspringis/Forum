@@ -24,4 +24,4 @@
         %td= format_time(reply.created_at)
         %td{class: "reply_to_reply"}
           - if reply.persisted?
-            = link_to "reply", new_article_reply_child_path(reply.article, reply)
+            = link_to "reply", new_article_reply_path(@article, :parent_id => reply)
