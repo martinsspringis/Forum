@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   helper FormattingHelper
+  helper RepliesHelper
 
 	def index
 		@articles = Article.all
@@ -7,6 +8,7 @@ class ArticlesController < ApplicationController
 
 	def show
 		@article = Article.find(params[:id])
+		@replies = @article.replies
 		@reply = @article.replies.build
 	end
 

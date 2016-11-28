@@ -1,0 +1,13 @@
+%div.reply
+  %div.author
+    -if reply.user.present?
+      = reply.user.nickname
+    -else
+      = reply.author
+  %div.content
+    = reply.content
+  %div.created_at
+    = format_time(reply.created_at) 
+  %div.reply_button
+    -if reply.persisted?
+      =link_to "reply", new_article_reply_path(@article, :parent_id => reply)
