@@ -12,10 +12,13 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require jquery.facebox
 #= require turbolinks
 #= require_tree .
 
 $ ->
 
-  #$('.reply_to_reply').on "click", ->
-    
+  $(document).bind "loading.facebox", ->
+    $("#facebox").css("top", "60px")
+
+  $("a.reply-button").facebox()

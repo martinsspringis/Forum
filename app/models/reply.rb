@@ -2,7 +2,7 @@
 
 class Reply < ActiveRecord::Base
   include MoralityChecker
-  require '/home/roberts/code/forums/app/services/troll_blocker'
+  require 'troll_blocker'
 
   belongs_to :article
   belongs_to :user
@@ -23,8 +23,6 @@ class Reply < ActiveRecord::Base
   	  troll_blocker.check_and_proceed
     end    
   end
-
-
 end
 
 # == Schema Information

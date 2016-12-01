@@ -1,8 +1,8 @@
 = form_for ([@article, @reply]) do |f|
-  .field
-    = f.label "Author: "
-    = f.text_field :author
-
+  -unless user_signed_in?
+    .field
+      = f.label "Author: "
+      = f.text_field :author
 
   .field
     = f.hidden_field :parent_id

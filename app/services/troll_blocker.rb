@@ -4,7 +4,7 @@ class TrollBlocker
   end
 
   def check_and_proceed
-  	if @user.warnings >= 5
+  	if @user.warnings >= 7
   		@user.blocked = true
   		@user.save
       puts "success"

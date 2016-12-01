@@ -1,0 +1,8 @@
+%h1 Administration
+
+= form_tag(administrations_path, method: "get") do
+  .field
+    = label_tag "New badword"
+    = text_field_tag :word
+  .action
+    = submit_tag "Save word"

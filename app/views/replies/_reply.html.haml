@@ -8,6 +8,6 @@
     = reply.content
   %div.created_at
     = format_time(reply.created_at) 
-  %div.reply_button
+  %div
     -if reply.persisted?
-      =link_to "reply", new_article_reply_path(@article, :parent_id => reply)
+      = link_to "reply", new_article_reply_path(@article, :parent_id => reply), class: "reply-button", rel: "facebox"

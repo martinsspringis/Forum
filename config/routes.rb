@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :replies
   end
   resources :users
+  resources :administrations
 
   root 'articles#index'
 

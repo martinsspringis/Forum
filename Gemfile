@@ -35,8 +35,10 @@ gem 'paperclip'
 gem 'letter_opener', :group => :development
 #Annotates Rails/ActiveRecord Models, routes, fixtures, and other based on the database schema
 gem 'annotate'
-
+#for nested resources
 gem 'ancestry'
+
+gem 'facebox-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

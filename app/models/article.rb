@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   include MoralityChecker
-  require '/home/roberts/code/forums/app/services/troll_blocker'
+  require 'troll_blocker'
 
 
   has_many :replies, dependent: :destroy

@@ -3,12 +3,17 @@ class RepliesController < ApplicationController
 
   def new
     @reply = Reply.new(:parent_id => params[:parent_id])
+    if request.xhr?
+    	render "new"
+    else
+    	redirect_to new_article_reply_path(@article, :parent_id => params[:parent_id])
+    end
   end
 
 	def create
 		@reply = @article.replies.build(reply_params)
 		
-    if user_signed_in?
+    if current_user
 		  @reply.user = current_user
 		  @reply.author = current_user.nickname
 	  end
@@ -21,12 +26,13 @@ class RepliesController < ApplicationController
 	end
 
 	private
-		def reply_params
-			params.require(:reply).permit(:parent_id, :author, :content)
-		end
 
-		def load_article
-			@article = Article.find(params[:article_id])
-		end
+	def reply_params
+		params.require(:reply).permit(:parent_id, :author, :content)
+	end
+
+	def load_article
+		@article = Article.find(params[:article_id])
+	end
 
 end
