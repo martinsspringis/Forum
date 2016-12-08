@@ -40,6 +40,7 @@ module MoralityChecker
     if (bad_only.match(content) || bad_center.match(content) || bad_first.match(content) || bad_last.match(content)\
       || bad_center_underscore.match(content) || bad_first_underscore.match(content) || bad_last_underscore.match(content)\
       || bad_center_num.match(content) || bad_first_num.match(content) || bad_last_num.match(content))
+      true
     end
   end
 

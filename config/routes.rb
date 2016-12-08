@@ -12,8 +12,12 @@ Rails.application.routes.draw do
       put "unblock"
     end
   end
-  resources :administrations
-
+  resource :administrations do
+    member do
+      get "send_summary"
+    end
+  end
+  #get send_summary, to: 'administrations_controller#send_summary', as: :send_summary
   root 'articles#index'
 
   # You can have the root of your site routed with "root"

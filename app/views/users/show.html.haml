@@ -20,4 +20,4 @@
     - @articles.each do |article|
       %tr
         %td= article.title
-        %td= link_to article.replies.count, article_path(article)
+        %td= link_to article.replies.count, article_path(article), method: :get

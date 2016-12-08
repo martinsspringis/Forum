@@ -26,7 +26,11 @@ class ArticlesController < ApplicationController
 
 		if user_signed_in?
 		  @article.user = current_user
-      @article.author = current_user.nickname
+      if current_user.nickname
+        @article.author = current_user.nickname
+      else
+      	@article.author = current_user.full_name
+      end
     end
 
 		if @article.save

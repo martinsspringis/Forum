@@ -41,6 +41,8 @@ gem 'ancestry'
 gem 'facebox-rails'
 #autentification through facebook
 gem 'omniauth-facebook'
+#Allow to do tasks after constant time, for example every 24 hours send email
+gem 'whenever', :require => false
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
