@@ -5,8 +5,4 @@ class AdministrationsController < ApplicationController
       badword = WriteBadword.new(params[:word])
       badword.write
   end
-
-  def new
-  	
-  end
 end

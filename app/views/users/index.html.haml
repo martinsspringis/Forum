@@ -1,0 +1,31 @@
+%h1 Users
+
+%table
+  %th username
+  %th email address
+  %th status
+  %th warnings
+  %th role
+  -@users.each do |user|
+    %tr
+      %td= user.nickname
+      %td= user.email
+      %td
+        -if user.blocked == false
+          = "active"
+        -else
+          = "user is blocked"
+      %td= user.warnings
+      %td
+        -if user.admin == true
+          = "administrator"
+        -elsif user.moderator == true
+          = "moderator"
+        -else
+          = "user"
+      %td
+        -if user.blocked == false
+          =link_to "block", block_user_path(user), method: :put, remote: :true, data:{confirm: "Are you sure?"}
+      %td
+        -if user.blocked == true
+          = link_to "unblock", unblock_user_path(user), method: :put, remote: :true, data:{confirm: "Are you sure?"}

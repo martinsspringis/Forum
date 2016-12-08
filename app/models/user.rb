@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :articles
   has_many :replies
@@ -10,9 +11,9 @@ class User < ActiveRecord::Base
   has_attached_file :asset, styles: { large: "600x600", medium: "300x300", thumb: "150x150#"}
   validates_attachment_content_type :asset, content_type: /\Aimage\/.*\Z/
 
-  validates :nickname, presence: true, uniqueness: true
   validates :name, presence: true
   validates :surname, presence: true
+  validates :nickname, uniqueness: true
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
@@ -41,6 +42,28 @@ class User < ActiveRecord::Base
       "#{name} #{surname}"
     else
       email
+    end
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.first_name   # assuming the user model has a name
+      user.surname = auth.info.last_name
+
+      user.skip_confirmation!   #skipping confirmation via email if signing in via facebook
+      user.save
+
+      #user.asset = auth.info.image # assuming the user model has an image
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
     end
   end
 
@@ -75,4 +98,5 @@ end
 #  nickname               :string
 #  warnings               :integer          default(0)
 #  blocked                :boolean          default(FALSE)
+#  admin                  :boolean          default(FALSE)
 #

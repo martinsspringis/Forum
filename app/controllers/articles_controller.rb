@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
 		@article = Article.find(params[:id])
 		@replies = @article.replies
 		@reply = @article.replies.build
+
 	end
 
 	def new

@@ -35,4 +35,5 @@ end
 #  nickname               :string
 #  warnings               :integer          default(0)
 #  blocked                :boolean          default(FALSE)
+#  admin                  :boolean          default(FALSE)
 #

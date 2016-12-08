@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @articles = @user.articles.order(created_at: :desc)
@@ -15,8 +19,22 @@ class UsersController < ApplicationController
     if @user.update(user_params)
     	redirect_to edit_user_path, flash: {notice: "All changes have been saved!"}
     else
-    	render edit_user_path
+    	render "users/edit"
     end
+  end
+
+  def block
+    @user = User.find(params[:id])
+    @user.blocked = true
+    @user.save
+    redirect_to users_path
+  end
+
+  def unblock
+    @user = User.find(params[:id])
+    @user.blocked = false
+    @user.save
+    redirect_to users_path
   end
 
   private
