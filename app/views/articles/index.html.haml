@@ -1,6 +1,7 @@
 %h1 Forum
 
-=link_to t(:new_article), new_article_path
+-if user_signed_in?
+  =link_to t(:new_article), new_article_path
 
 %table
   %tr

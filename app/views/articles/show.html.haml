@@ -2,8 +2,11 @@
 %h1= @article.title
 %p= @article.content
 
-=link_to "Edit article", edit_article_path(@article)
+
 -if current_user == @article.user
+  =link_to "Edit article", edit_article_path(@article)
+  
+-if user_signed_in? and current_user.admin
   =link_to "Delete article", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}
 
 

@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    authorize @users
   end
 
   def show
@@ -11,6 +12,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    
+    unless user_signed_in? and current_user.id == @user.id
+      flash[:alert] = "You don't have permission to do that!"
+      redirect_to root_path
+    end
   end
 
   def update
@@ -25,6 +31,7 @@ class UsersController < ApplicationController
 
   def block
     @user = User.find(params[:id])
+    authorize @user
     @user.blocked = true
     @user.save
     redirect_to users_path
@@ -32,6 +39,7 @@ class UsersController < ApplicationController
 
   def unblock
     @user = User.find(params[:id])
+    authorize @user
     @user.blocked = false
     @user.save
     redirect_to users_path

@@ -43,6 +43,8 @@ gem 'facebox-rails'
 gem 'omniauth-facebook'
 #Allow to do tasks after constant time, for example every 24 hours send email
 gem 'whenever', :require => false
+#Object oriented authorization for rails apps
+gem 'pundit'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

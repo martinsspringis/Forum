@@ -1,5 +1,11 @@
 %h1 Daily summary
 
-%ul
+%h3 Todays numbers: 
+%ul 
   %li="Number of new articles today: #{@todays_article_count}"
   %li="Number of new replies today: #{@todays_replies_count}"
+
+%h3 Total forum numbers: 
+%ul 
+  %li= "Total amount of articles in forum: #{@total_articles}"
+  %li= "Total amount of replies in forum: #{@total_replies}"

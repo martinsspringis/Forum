@@ -15,15 +15,16 @@ class ArticlesController < ApplicationController
 
 	def new
 		@article = Article.new
+		authorize @article
 	end
 
 	def edit
 		@article = Article.find(params[:id])
+	  authorize @article
 	end
 
 	def create
 		@article = Article.new(article_params)
-
 		if user_signed_in?
 		  @article.user = current_user
       if current_user.nickname
@@ -41,7 +42,6 @@ class ArticlesController < ApplicationController
 
 	def update
 		@article = Article.find(params[:id])
-
 		if @article.update(article_params)
 			redirect_to @article
 		else 
@@ -51,6 +51,7 @@ class ArticlesController < ApplicationController
 
 	def destroy
 		@article = Article.find(params[:id])
+		authorize @article
 		@article.destroy
 
 		redirect_to articles_path
@@ -61,5 +62,6 @@ class ArticlesController < ApplicationController
 	def article_params
 		params.require(:article).permit(:author, :title, :content)
 	end
+
 
 end
