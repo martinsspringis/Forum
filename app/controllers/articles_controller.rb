@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, :only => [:new]
   helper FormattingHelper
   helper RepliesHelper
 
@@ -10,7 +11,6 @@ class ArticlesController < ApplicationController
 		@article = Article.find(params[:id])
 		@replies = @article.replies
 		@reply = @article.replies.build
-
 	end
 
 	def new
@@ -60,7 +60,7 @@ class ArticlesController < ApplicationController
 	private
 		
 	def article_params
-		params.require(:article).permit(:author, :title, :content)
+		params.require(:article).permit(:author, :title, :content, :icon)
 	end
 
 

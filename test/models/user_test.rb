@@ -36,4 +36,7 @@ end
 #  warnings               :integer          default(0)
 #  blocked                :boolean          default(FALSE)
 #  admin                  :boolean          default(FALSE)
+#  moderator              :boolean          default(FALSE)
+#  provider               :string
+#  uid                    :string
 #

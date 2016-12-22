@@ -45,6 +45,10 @@ gem 'omniauth-facebook'
 gem 'whenever', :require => false
 #Object oriented authorization for rails apps
 gem 'pundit'
+#autentification through facebook
+gem 'omniauth-twitter'
+#for bootstrap
+gem 'bootstrap-sass'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

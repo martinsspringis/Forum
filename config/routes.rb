@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get "send_summary"
     end
   end
+  
   #get send_summary, to: 'administrations_controller#send_summary', as: :send_summary
   root 'articles#index'
 

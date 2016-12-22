@@ -1,15 +1,13 @@
 = form_for ([@article, @reply]) do |f|
   -unless user_signed_in?
     .field
-      = f.label "Author: "
-      = f.text_field :author
+      = f.text_field :author, placeholder: "Author"
 
   .field
     = f.hidden_field :parent_id
 
   .field 
-    = f.label "Reply: "
-    = f.text_area :content
+    = f.text_area :content, placeholder: "Reply"
 
   .action
     = f.submit "Post"

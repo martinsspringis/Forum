@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
-         :omniauthable, :omniauth_providers => [:facebook]
+         :omniauthable, :omniauth_providers => [:facebook, :twitter]
 
   has_many :articles
   has_many :replies
@@ -98,4 +98,7 @@ end
 #  warnings               :integer          default(0)
 #  blocked                :boolean          default(FALSE)
 #  admin                  :boolean          default(FALSE)
+#  moderator              :boolean          default(FALSE)
+#  provider               :string
+#  uid                    :string
 #
