@@ -21,3 +21,7 @@
 
 #Ignoring badwords.txt
 /badwords.txt
+
+
+#Ignoring all images for forum
+/app/assets/images
