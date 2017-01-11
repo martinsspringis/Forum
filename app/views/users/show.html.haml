@@ -2,6 +2,8 @@
 
 - if @user.asset?
   = image_tag @user.asset.url(:medium)
+- else
+  = image_tag "default_avatar.jpg", size: "240x240"
 
 - if @user.blocked
   %h1 This user has been blocked

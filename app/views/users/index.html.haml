@@ -17,9 +17,9 @@
           = "user is blocked"
       %td= user.warnings
       %td
-        -if user.admin == true
+        -if user.role == 3
           = "administrator"
-        -elsif user.moderator == true
+        -elsif user.role == 2
           = "moderator"
         -else
           = "user"

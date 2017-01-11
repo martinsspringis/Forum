@@ -17,9 +17,11 @@ Rails.application.routes.draw do
       get "send_summary"
     end
   end
+  resource :home
+  
   
   #get send_summary, to: 'administrations_controller#send_summary', as: :send_summary
-  root 'articles#index'
+  root 'home#index'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

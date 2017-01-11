@@ -2,7 +2,7 @@ class AdministrationsController < ApplicationController
   require 'write_badword'
 
   def show  
-    unless user_signed_in? and current_user.admin
+    unless user_signed_in? and current_user.role == 3
       flash[:alert] = "You don't have permission to do that!"
       redirect_to root_path
     end
@@ -14,7 +14,7 @@ class AdministrationsController < ApplicationController
   end
 
   def send_summary
-    unless user_signed_in? and current_user.admin
+    unless user_signed_in? and current_user.role == 3
       flash[:alert] = "You don't have permission to do that!"
       redirect_to root_path
     end

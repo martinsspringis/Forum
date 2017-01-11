@@ -1,18 +1,18 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    user and user.admin?	
+    user and user.role == 3	
   end
 
   def edit?
-    user and record.user	
+    user and record.role == 3	
   end
 
   def block?
-  	user and user.admin?
+  	user and user.role == 3
   end
 
   def unblock?
-  	user and user.admin?
+  	user and user.role == 3
   end
 
 end

@@ -7,8 +7,9 @@
     = csrf_meta_tags
   %body
 
-    = link_to "home", articles_path
-    = link_to "administration", administrations_path if current_user && current_user.admin
+    = link_to "home", root_path
+    = link_to "forum", articles_path
+    = link_to "administration", administrations_path if current_user && current_user.role == 3
 
     -if user_signed_in?
       -if current_user.nickname
