@@ -2,12 +2,20 @@
 	padding-left: 30px;
 }
 
+.table {
+	border: 1px solid #000033;
+}
 
 #articles th{
 	background-color: #FFA500;
+	border-top: 1px solid #000033;
+	border-bottom: 1px solid #000033;
 	height: 50px;
 }
 
+#articles td{
+	background-color: #e6e6ff;
+}
 
 .icon{
 	width: 50px;

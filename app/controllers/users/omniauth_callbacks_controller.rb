@@ -15,6 +15,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
       # You need to implement the method below in your model
       auth = env["omniauth.auth"]
+
+      puts auth   #izdrukā visu twitter padoto hashu. TESTAM!!!!
+
       @user = user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.new
       if @user.persisted?
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success"

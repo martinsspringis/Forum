@@ -18,7 +18,10 @@ Rails.application.routes.draw do
     end
   end
   resource :home
-  
+  resources :boxscores
+  resources :stats
+  resources :news
+  resources :galleries
   
   #get send_summary, to: 'administrations_controller#send_summary', as: :send_summary
   root 'home#index'

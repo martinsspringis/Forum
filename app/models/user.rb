@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   has_attached_file :asset, styles: { large: "600x600", medium: "300x300", thumb: "150x150#"}
   validates_attachment_content_type :asset, content_type: /\Aimage\/.*\Z/
 
-  validates :name, presence: true
-  validates :surname, presence: true
+  #validates :name, presence: true
+  #validates :surname, presence: true
   validates :nickname, uniqueness: true
 
   def self.find_for_database_authentication(warden_conditions)
@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     super.tap do |user|
+      puts "hahaaxx"
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
       end

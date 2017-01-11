@@ -5,21 +5,27 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
-
-    = link_to "home", root_path
-    = link_to "forum", articles_path
-    = link_to "administration", administrations_path if current_user && current_user.role == 3
-
-    -if user_signed_in?
-      -if current_user.nickname
-        = link_to "hello, #{current_user.nickname}", edit_user_path(current_user)
+  %body#body
+    %div
+      = image_tag "temporary_banner", id: "nyk_banner"
+      %ul.list-inline#navigation
+        %li= link_to "home", root_path
+        %li= link_to "forum", articles_path
+        %li= link_to "news", news_index_path
+        %li= link_to "gallery", galleries_path
+        %li= link_to "boxscores", boxscores_path
+        %li= link_to "player stats", stats_path
+        %li= link_to "administration", administrations_path if current_user && current_user.role == 3
+    %div#authorization
+      -if user_signed_in?
+        -if current_user.nickname
+          = link_to "hello, #{current_user.nickname}", edit_user_path(current_user)
+        -else
+          = link_to "hello, #{current_user.email}", edit_user_path(current_user)
+        = link_to t(:log_out), destroy_user_session_path, method: :delete
       -else
-        = link_to "hello, #{current_user.email}", edit_user_path(current_user)
-      = link_to t(:log_out), destroy_user_session_path, method: :delete
-    -else
-      = link_to t(:log_in), new_user_session_path
-      = link_to t(:sign_up), new_user_registration_path
+        = link_to t(:log_in), new_user_session_path
+        = link_to t(:sign_up), new_user_registration_path
     
     %p.notice= notice
     %p.alert= alert
