@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   resources :stats
   resources :news_articles
   resources :galleries
+  resources :teams
+  resources :games
+  resources :player_stats
+  resources :players
   
   #get send_summary, to: 'administrations_controller#send_summary', as: :send_summary
   root 'home#index'
@@ -177,5 +181,37 @@ end
 #                                  PATCH    /galleries/:id(.:format)                         galleries#update
 #                                  PUT      /galleries/:id(.:format)                         galleries#update
 #                                  DELETE   /galleries/:id(.:format)                         galleries#destroy
+#                            teams GET      /teams(.:format)                                 teams#index
+#                                  POST     /teams(.:format)                                 teams#create
+#                         new_team GET      /teams/new(.:format)                             teams#new
+#                        edit_team GET      /teams/:id/edit(.:format)                        teams#edit
+#                             team GET      /teams/:id(.:format)                             teams#show
+#                                  PATCH    /teams/:id(.:format)                             teams#update
+#                                  PUT      /teams/:id(.:format)                             teams#update
+#                                  DELETE   /teams/:id(.:format)                             teams#destroy
+#                            games GET      /games(.:format)                                 games#index
+#                                  POST     /games(.:format)                                 games#create
+#                         new_game GET      /games/new(.:format)                             games#new
+#                        edit_game GET      /games/:id/edit(.:format)                        games#edit
+#                             game GET      /games/:id(.:format)                             games#show
+#                                  PATCH    /games/:id(.:format)                             games#update
+#                                  PUT      /games/:id(.:format)                             games#update
+#                                  DELETE   /games/:id(.:format)                             games#destroy
+#                     player_stats GET      /player_stats(.:format)                          player_stats#index
+#                                  POST     /player_stats(.:format)                          player_stats#create
+#                  new_player_stat GET      /player_stats/new(.:format)                      player_stats#new
+#                 edit_player_stat GET      /player_stats/:id/edit(.:format)                 player_stats#edit
+#                      player_stat GET      /player_stats/:id(.:format)                      player_stats#show
+#                                  PATCH    /player_stats/:id(.:format)                      player_stats#update
+#                                  PUT      /player_stats/:id(.:format)                      player_stats#update
+#                                  DELETE   /player_stats/:id(.:format)                      player_stats#destroy
+#                          players GET      /players(.:format)                               players#index
+#                                  POST     /players(.:format)                               players#create
+#                       new_player GET      /players/new(.:format)                           players#new
+#                      edit_player GET      /players/:id/edit(.:format)                      players#edit
+#                           player GET      /players/:id(.:format)                           players#show
+#                                  PATCH    /players/:id(.:format)                           players#update
+#                                  PUT      /players/:id(.:format)                           players#update
+#                                  DELETE   /players/:id(.:format)                           players#destroy
 #                             root GET      /                                                home#index
 #

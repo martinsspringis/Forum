@@ -1,0 +1,19 @@
+%h1 Add team
+
+- if @team.errors.any?
+  = pluralize(@team.errors.count, "error")
+
+  %ul
+    - @team.errors.full_messages.each do |msg|
+      %li= msg
+
+= form_for @team do |f|
+  .field
+    = f.text_field :name, placeholder: "Name of team"
+
+  .field
+    = f.label "Choose team logo: "
+    = f.file_field :icon
+
+  .actions
+    = f.submit "Add team"
