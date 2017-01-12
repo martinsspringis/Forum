@@ -4,13 +4,15 @@
 
 .table {
 	border: 1px solid #000033;
+	opacity: 0.8;
 }
 
 #articles th{
-	background-color: #FFA500;
+	background-color: #e65c00;
 	border-top: 1px solid #000033;
 	border-bottom: 1px solid #000033;
 	height: 50px;
+	color: black;
 }
 
 #articles td{

@@ -31,11 +31,15 @@ end
 #
 # Table name: articles
 #
-#  id         :integer          not null, primary key
-#  author     :string
-#  title      :string
-#  content    :text
-#  created_at :datetime
-#  updated_at :datetime
-#  user_id    :integer
+#  id                :integer          not null, primary key
+#  author            :string
+#  title             :string
+#  content           :text
+#  created_at        :datetime
+#  updated_at        :datetime
+#  user_id           :integer
+#  icon_file_name    :string
+#  icon_content_type :string
+#  icon_file_size    :integer
+#  icon_updated_at   :datetime
 #

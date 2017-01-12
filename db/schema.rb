@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110235741) do
+ActiveRecord::Schema.define(version: 20170112083708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,12 +29,77 @@ ActiveRecord::Schema.define(version: 20170110235741) do
     t.datetime "icon_updated_at"
   end
 
+  create_table "games", force: :cascade do |t|
+    t.integer  "team_id"
+    t.date     "date"
+    t.string   "at"
+    t.integer  "nyk_points"
+    t.integer  "opponent_points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "images", force: :cascade do |t|
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "news_articles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "article"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "player_stats", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.time     "min"
+    t.integer  "fgm"
+    t.integer  "fga"
+    t.integer  "three_m"
+    t.integer  "three_a"
+    t.integer  "ftm"
+    t.integer  "fta"
+    t.integer  "eff_factor"
+    t.integer  "or"
+    t.integer  "reb"
+    t.integer  "ast"
+    t.integer  "blk"
+    t.integer  "stl"
+    t.integer  "to"
+    t.integer  "fouls"
+    t.integer  "pts"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.integer  "team_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "number"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string   "from"
+    t.decimal  "height",               precision: 2, scale: 2
+    t.decimal  "weight",               precision: 2, scale: 2
+    t.date     "born"
+    t.date     "nba_debut"
+    t.text     "bio"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,6 +115,15 @@ ActiveRecord::Schema.define(version: 20170110235741) do
   end
 
   add_index "replies", ["ancestry"], name: "index_replies_on_ancestry", using: :btree
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.date     "established"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

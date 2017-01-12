@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :articles
   has_many :replies
+  has_many :news_articles
 
   has_attached_file :asset, styles: { large: "600x600", medium: "300x300", thumb: "150x150#"}
   validates_attachment_content_type :asset, content_type: /\Aimage\/.*\Z/
@@ -98,8 +99,7 @@ end
 #  nickname               :string
 #  warnings               :integer          default(0)
 #  blocked                :boolean          default(FALSE)
-#  admin                  :boolean          default(FALSE)
-#  moderator              :boolean          default(FALSE)
 #  provider               :string
 #  uid                    :string
+#  role                   :integer          default(1)
 #
