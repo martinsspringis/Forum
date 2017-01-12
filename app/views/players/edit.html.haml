@@ -1,0 +1,56 @@
+= form_for @player do |f|
+  .field
+  = f.label "Choose team: "
+  = f.select(:team_id) do
+    - @teams.each do |team|
+      = content_tag(:option, team.name, value: team.id)
+
+  .field
+  = f.label "Select position: "
+  = f.select(:position) do
+    = content_tag(:option, "C", value: "C")
+    = content_tag(:option, "PF", value: "PF")
+    = content_tag(:option, "SF", value: "SF")
+    = content_tag(:option, "SG", value: "SG")
+    = content_tag(:option, "PG", value: "PG")
+
+  .field
+    = f.text_field :first_name, placeholder: "First name"
+
+  .field
+    = f.text_field :last_name, placeholder: "Last name"
+  
+  .field
+    = f.label "Jersey number: "
+    = f.number_field :number
+
+  .field
+    = f.label "Choose picture: "
+    = f.file_field :picture
+
+  .field
+    = f.text_field :from, placeholder: "From"
+  
+  .field
+    = f.label "Height: "
+    = f.number_field :height
+    = f.label "(cm)"
+
+  .field
+    = f.label "Weight: "
+    = f.number_field :weight
+    = f.label "(kg)"
+  
+  .field
+    = f.label "Born date: "
+    = f.date_field :born
+
+  .field
+    = f.label "NBA debut date: "
+    = f.date_field :nba_debut
+
+  .field
+    = f.text_area :bio, placeholder: "Biography"
+
+  .actions
+    = f.submit "Add player"

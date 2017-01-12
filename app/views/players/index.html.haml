@@ -1,0 +1,10 @@
+%h1 Here are list of all players
+
+-if user_signed_in? && current_user.role == 3
+  = link_to "Add a new player", new_player_path
+
+%br
+
+- @players.each do |player|
+  = link_to player.full_name, player_path(player)
+  %br

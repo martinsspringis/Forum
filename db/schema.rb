@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112083708) do
+ActiveRecord::Schema.define(version: 20170112125040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,13 +95,14 @@ ActiveRecord::Schema.define(version: 20170112083708) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "from"
-    t.decimal  "height",               precision: 2, scale: 2
-    t.decimal  "weight",               precision: 2, scale: 2
     t.date     "born"
     t.date     "nba_debut"
     t.text     "bio"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "height"
+    t.integer  "weight"
+    t.string   "position",             limit: 2
   end
 
   create_table "replies", force: :cascade do |t|
