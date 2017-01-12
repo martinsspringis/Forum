@@ -1,6 +1,9 @@
 -if user_signed_in? && current_user.role == 3
   = link_to "Delete this article", news_article_path(@article), method: :delete, data: {confirm: "Are you sure?"}
 
+-if user_signed_in? && current_user == @article.user
+  = link_to "Edit article", edit_news_article_path(@article)
+
 %h1= @article.title
 %p= @article.article
 

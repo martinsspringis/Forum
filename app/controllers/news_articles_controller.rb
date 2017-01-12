@@ -13,10 +13,14 @@ class NewsArticlesController < ApplicationController
 	end
 
 	def edit
+		@article = NewsArticle.find(params[:id])
+		authorize @article
 	end
 
 	def create 
 		@article = NewsArticle.new(article_params)
+
+    @article.user_id = current_user.id
 
 		if @article.save
 			redirect_to @article
@@ -25,6 +29,12 @@ class NewsArticlesController < ApplicationController
 	end
 
 	def update
+		@article = NewsArticle.find(params[:id])
+		if @article.update(article_params)
+			redirect_to @article
+		else 
+			render :edit
+		end
 	end
 
 	def destroy

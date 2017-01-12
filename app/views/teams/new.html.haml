@@ -7,13 +7,7 @@
     - @team.errors.full_messages.each do |msg|
       %li= msg
 
-= form_for @team do |f|
-  .field
-    = f.text_field :name, placeholder: "Name of team"
-
-  .field
-    = f.label "Choose team logo: "
-    = f.file_field :icon
-
-  .actions
-    = f.submit "Add team"
+= simple_form_for @team do |f|
+  = f.input :name, placeholder: "Name of the team"
+  = f.input :icon, label: "Upload team logo"
+  = f.button :submit, "Add team"

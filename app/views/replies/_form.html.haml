@@ -7,14 +7,9 @@
     - @reply.errors.full_messages.each do |msg|
       %li= msg
 
-
-= form_for([@article, @reply]) do |f|
+= simple_form_for([@article, @reply]) do |f|
   -unless user_signed_in?
-    .field
-      = f.text_field :author, placeholder: "author"
-
-  .field 
-    = f.text_area :content, placeholder: "reply"
-
-  .action
-    = f.submit "Post"
+    = f.input :author, placeholder: "Author"
+  = f.input :content, placeholder: "Reply"
+  = f.button :submit, "Reply"  
+  

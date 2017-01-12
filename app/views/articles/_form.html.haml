@@ -5,17 +5,8 @@
     - @article.errors.full_messages.each do |msg|
       %li= msg
 
-
-= form_for(@article) do |f|
-  .field
-    = f.text_field :title, placeholder: "Title"
-
-  .field 
-    = f.text_area :content, placeholder: "Content"
-
-  .field
-    = f.label "Choose image: "
-    = f.file_field :icon
-
-  .actions
-    = f.submit "Save article"
+= simple_form_for @article do |f|
+  = f.input :title, placeholder: "Title"
+  = f.input :content, placeholder: "Content"
+  = f.input :icon, label: "Choose image: "
+  = f.button :submit, "Save article"
