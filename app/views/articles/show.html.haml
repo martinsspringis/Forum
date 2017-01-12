@@ -15,4 +15,6 @@
 
 
 = render "replies/form"
-= nested_replies @replies.arrange(:order => :created_at)
+
+- if @replies
+  = nested_replies @replies.arrange(:order => :created_at)

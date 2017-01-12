@@ -1,7 +1,7 @@
 
 = simple_form_for([@article, @reply]) do |f|
   -unless user_signed_in?
-    = f.input :author, placeholder: "Author"
+    = f.input :author, label: "Author: "
   = f.input :parent_id, as: :hidden
-  = f.input :content, placeholder: "Reply"
+  = f.input :content, label: "Reply: "
   = f.button :submit, "Reply"  

@@ -6,7 +6,7 @@
       %li= msg
 
 = simple_form_for @article do |f|
-  = f.input :title, placeholder: "Title"
-  = f.input :content, placeholder: "Content"
+  = f.input :title, label: "Title: "
+  = f.input :content, label: "Content: "
   = f.input :icon, label: "Choose image: "
   = f.button :submit, "Save article"
