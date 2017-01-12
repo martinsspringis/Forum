@@ -1,6 +1,4 @@
-# forums
-forums
+NYK Fan Page
 
-Šī būs adrese matemātikas cienītājiem!!!
-Jauna rinda
+This is fan page for baskeball team New York Knicks fans.
 
