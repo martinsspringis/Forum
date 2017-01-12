@@ -16,8 +16,8 @@
 !/log/.keep
 /tmp
 
-#Ignoring all assets
-/public/system/users/
+#Ignoring all attachments
+/public/system/
 
 #Ignoring badwords.txt
 /badwords.txt
