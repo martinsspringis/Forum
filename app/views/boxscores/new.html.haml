@@ -1,0 +1,53 @@
+%h1= "Create boxscore"
+%h2= "New York Knicks vs #{@game.team.name}"
+%h2= @game.date
+
+= link_to "add_player", new_game_player_stat_path(@game)
+
+%br
+- if @game.player_stats.count > 0
+  = "Completed players:"
+  %table
+    %tr
+      %th Player name
+      %th Minutes
+      %th FGM
+      %th FGA
+      %th 3PTM
+      %th 3PTA
+      %th FTM
+      %th FTA
+      %th OR
+      %th REB
+      %th AST
+      %th BLK
+      %th STL
+      %th TO
+      %th FOULS
+      %th PTS
+      %th +/-
+
+    - @game.player_stats.each do |player|
+      %tr
+        %td= player.player.name
+        %td= player.game_time
+        %td= player.fgm
+        %td= player.fga
+        %td= player.three_m
+        %td= player.three_a
+        %td= player.ftm
+        %td= player.fta
+        %td= player.or
+        %td= player.reb
+        %td= player.ast
+        %td= player.blk
+        %td= player.stl
+        %td= player.to
+        %td= player.fouls
+        %td= player.pts
+        %td= player.eff_factor
+
+= link_to "This boxscore is ready for showing", reviewed_game_path(@game), method: :put, remote: true, id: "ready_button"
+
+%h3#boxscore_published This boxscore is published
+    

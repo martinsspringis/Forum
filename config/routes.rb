@@ -15,16 +15,21 @@ Rails.application.routes.draw do
   resource :administrations do
     member do
       get "send_summary"
+      get "pending"
     end
   end
   resource :home
-  resources :boxscores
   resources :stats
   resources :news_articles
   resources :galleries
   resources :teams
-  resources :games
-  resources :player_stats
+  resources :games do
+    resources :boxscores
+    resources :player_stats
+    member do
+      put "reviewed"
+    end
+  end
   resources :players
   
   #get send_summary, to: 'administrations_controller#send_summary', as: :send_summary

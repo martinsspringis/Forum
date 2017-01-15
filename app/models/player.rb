@@ -10,7 +10,7 @@ class Player < ActiveRecord::Base
   validates :last_name, presence: true
   validates :team_id, presence: true
 
-  def full_name
+  def name
     if first_name.present? or last_name.present?
     	"#{first_name} #{last_name}"
     end
@@ -32,11 +32,12 @@ end
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  from                 :string
-#  height               :decimal(2, 2)
-#  weight               :decimal(2, 2)
 #  born                 :date
 #  nba_debut            :date
 #  bio                  :text
 #  created_at           :datetime
 #  updated_at           :datetime
+#  height               :integer
+#  weight               :integer
+#  position             :string(2)
 #

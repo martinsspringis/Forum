@@ -1,0 +1,9 @@
+%h1 Add new game
+
+= simple_form_for @game do |f|
+  = f.input :team_id, label: "Select opponent: ", collection: @teams
+  = f.input :date
+  = f.collection_radio_buttons :at, [['H', "Home game"], ['A', "Away game"]], :first, :last
+  = f.input :nyk_points
+  = f.input :opponent_points
+  = f.button :submit, "Add game"

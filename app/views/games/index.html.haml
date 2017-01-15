@@ -1,0 +1,27 @@
+%h1 Games index
+
+%div#games_index
+
+  - if user_signed_in? && current_user.role == 3
+    = link_to "add new game", new_game_path
+
+
+  - @games.each do |game|
+    %br
+    %br
+    = "NYK vs #{game.team.name}"
+    %br
+    - if game.at == 'H'
+      = "@New York"
+    - else
+      = "@#{game.team.name} stadium"
+    - if game.nyk_points and game.opponent_points
+      %br
+      = "#{game.nyk_points} : #{game.opponent_points}"
+    %br
+    = format_time(game.date)
+    %br
+    = link_to "Game info", game_path(game)
+    %br
+    - if user_signed_in? && current_user.role == 3
+      = link_to "Edit game info", edit_game_path(game)

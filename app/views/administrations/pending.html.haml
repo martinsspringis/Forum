@@ -1,0 +1,15 @@
+%h1 Boxscores that are waiting to be filled
+
+- @pending_boxscores.each do |p|
+  %br
+
+  - if p.at == 'H'
+    - home_team = "New York"
+  -else home_team = p.team.name
+
+  = "NYK vs #{p.team.name} @#{home_team}"
+  %br
+  = p.date
+  %br
+  = link_to "Fill stats", new_game_boxscore_path(p)
+  %br

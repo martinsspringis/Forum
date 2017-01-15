@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112125040) do
+ActiveRecord::Schema.define(version: 20170115135150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,12 +31,14 @@ ActiveRecord::Schema.define(version: 20170112125040) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "team_id"
-    t.date     "date"
     t.string   "at"
     t.integer  "nyk_points"
     t.integer  "opponent_points"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "hidden",          default: false
+    t.boolean  "reviewed",        default: false
+    t.datetime "date"
   end
 
   create_table "images", force: :cascade do |t|
@@ -65,7 +67,6 @@ ActiveRecord::Schema.define(version: 20170112125040) do
     t.integer  "game_id"
     t.integer  "team_id"
     t.integer  "player_id"
-    t.time     "min"
     t.integer  "fgm"
     t.integer  "fga"
     t.integer  "three_m"
@@ -83,6 +84,8 @@ ActiveRecord::Schema.define(version: 20170112125040) do
     t.integer  "pts"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "min"
+    t.integer  "sec"
   end
 
   create_table "players", force: :cascade do |t|

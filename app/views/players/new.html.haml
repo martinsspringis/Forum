@@ -10,7 +10,7 @@
   = f.input :from, placeholder: "From"
   = f.input :height, label: "Height in centimeters: "
   = f.input :weight, label: "Weight in kilograms: "
-  = f.input :born, label: "Born date: "
-  = f.input :nba_debut, label: "NBA debut: "
+  = f.input :born, start_year: Date.today.year - 50, end_year: Date.today.year - 15, label: "Born date: "
+  = f.input :nba_debut, start_year: Date.today.year - 30, end_year: Date.today.year, label: "NBA debut: "
   = f.input :bio, placeholder: "Biography"
   = f.button :submit

@@ -6,11 +6,33 @@
     = text_field_tag :word
   .action
     = submit_tag "Save word"
-    
+
+= link_to "pending boxscores", pending_administrations_path
+%br
+
+= link_to "games", games_path
+%br
+
 = link_to "players", players_path
+%br
 
 = link_to "teams", teams_path
+%br
 
 = link_to "users", users_path
+%br
 
 = link_to 'Send summary', send_summary_administrations_path
+
+%div#awaiting_games
+
+  %h1 Awaiting game results:
+
+  -@games.each do |game|
+    %br
+    = "NYK vs #{game.team.name}"
+    %br
+    = format_time(game.date)
+    %br
+    = link_to "Edit game", edit_game_path(game)
+    %br

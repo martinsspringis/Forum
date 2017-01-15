@@ -1,0 +1,22 @@
+%h1 New stat
+
+= simple_form_for ([@game, @player_stat]) do |f|
+  = f.input :player_id, label: "Select player: ", collection: @players
+  = f.input :min, label: "Time played: ", input_html: {value: f.object.min || '0'}
+  = f.input :sec, input_html: {value: f.object.sec || '0'}
+  = f.input :pts, label: "Points: ", input_html: {value: f.object.pts || '0'}
+  = f.input :fgm, label: "Field goals made: ", input_html: {value: f.object.fgm || '0'}
+  = f.input :fga, label: "Field goals attempted: ", input_html: {value: f.object.fga || '0'}
+  = f.input :three_m, label: "3 pointers made: ", input_html: {value: f.object.three_a || '0'}
+  = f.input :three_a, label: "3 pointer attempted: ", input_html: {value: f.object.three_m || '0'}
+  = f.input :ftm, label: "Free throws made: ", input_html: {value: f.object.ftm || '0'}
+  = f.input :fta, label: "Free throws attempted: ", input_html: {value: f.object.fta || '0'}
+  = f.input :eff_factor, label: "+/-", input_html: {value: f.object.eff_factor || '0'}
+  = f.input :reb, label: "Rebounds: ", input_html: {value: f.object.reb || '0'}
+  = f.input :or, label: "Offensive rebounds: ", input_html: {value: f.object.or || '0'}
+  = f.input :ast, label: "Assists: ", input_html: {value: f.object.ast || '0'}
+  = f.input :blk, label: "Blocks: ", input_html: {value: f.object.blk || '0'}
+  = f.input :stl, label: "Steals: ", input_html: {value: f.object.stl || '0'}
+  = f.input :to, label: "Turnouvers: ", input_html: {value: f.object.to || '0'}
+  = f.input :fouls, label: "Fouls: ", input_html: {value: f.object.fouls || '0'}
+  = f.button :submit, "Save", input_html: {value: f.object.min || '0'}

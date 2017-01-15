@@ -9,7 +9,7 @@ class NewsArticlePolicy < ApplicationPolicy
 	end
 
   def destroy?
-    user && user.role == 3
+    user && user.role >= 2
   end
 
 end

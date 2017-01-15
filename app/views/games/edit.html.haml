@@ -1,0 +1,9 @@
+%h1= "New York Knicks vs #{@game.team.name}"
+
+= simple_form_for @game do |f|
+  = f.input :date
+  = f.collection_radio_buttons :at, [['H', "Home game"], ['A', "Away game"]], :first, :last
+  = f.input :nyk_points
+  = f.input :opponent_points
+  = f.input :hidden
+  = f.button :submit, "Update"

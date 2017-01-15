@@ -18,6 +18,10 @@
 
 $ ->
 
+  $('#ready_button').on "click", ->
+    $(this).hide()
+    $('#boxscore_published').show()
+
   $(document).bind "loading.facebox", ->
     $("#facebox").css("top", "60px")
 
