@@ -8,7 +8,7 @@
 
 %br
 
-- if @game.reviewed = true
+- if @game.reviewed = true and @game.player_stats.count > 0
   %table
     %tr
       %th Player name

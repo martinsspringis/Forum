@@ -1,3 +1,8 @@
+- if user_signed_in? && current_user.role >= 2 && @user.blocked == false && @user.role == 1
+  = link_to "block", block_user_path(@user), method: :put, data:{confirm: "Are you sure?"}
+- elsif user_signed_in? && current_user.role >= 2 && @user.blocked == true && @user.role == 1
+  = link_to "unblock", unblock_user_path(@user), method: :put, data:{confirm: "Are you sure?"}
+
 %h1= @user.nickname
 
 - if @user.asset?

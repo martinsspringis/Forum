@@ -15,7 +15,7 @@
         %li= link_to "gallery", galleries_path
         %li= link_to "games", games_path
         %li= link_to "player stats", stats_path
-        %li= link_to "administration", administrations_path if current_user && current_user.role == 3
+        %li= link_to "administration", administrations_path if current_user && current_user.role >= 2
     %div#authorization
       -if user_signed_in?
         -if current_user.nickname

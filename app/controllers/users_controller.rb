@@ -34,7 +34,11 @@ class UsersController < ApplicationController
     authorize @user
     @user.blocked = true
     @user.save
-    redirect_to users_path
+
+    if current_user.role == 3
+      redirect_to users_path
+    else redirect_to user_path(@user)
+    end
   end
 
   def unblock
@@ -42,7 +46,11 @@ class UsersController < ApplicationController
     authorize @user
     @user.blocked = false
     @user.save
-    redirect_to users_path
+
+    if current_user.role == 3
+      redirect_to users_path
+    else redirect_to user_path(@user)
+    end
   end
 
   private
