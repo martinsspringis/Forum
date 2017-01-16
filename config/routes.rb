@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     member do
       put "block"
       put "unblock"
+      put "increase_role"
+      put "decrease_role"
     end
   end
   resource :administrations do

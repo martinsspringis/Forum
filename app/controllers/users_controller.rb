@@ -53,6 +53,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def increase_role
+    @user = User.find(params[:id])
+    authorize @user
+    
+    @user.role += 1 if @user.role == 1
+    @user.save
+
+    redirect_to user_path(@user)
+  end
+
+  def decrease_role
+    @user = User.find(params[:id])
+    authorize @user
+
+    @user.role -= 1 if @user.role == 2
+    @user.save
+
+    redirect_to user_path(@user)
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :surname, :nickname, :asset)

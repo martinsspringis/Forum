@@ -43,12 +43,7 @@ class GamesController < ApplicationController
 		@game.reviewed = true;
 		@game.save
 
-
-		respond_to do |format|
-			format.html { redirect_to articles_url }
-			format.json { head :no_content }
-			format.js	{render layout: false}
-		end		
+		redirect_to game_path(@game)
 	end
 
 	private

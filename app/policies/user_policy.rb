@@ -15,4 +15,12 @@ class UserPolicy < ApplicationPolicy
   	user and user.role >= 2
   end
 
+  def increase_role?
+    user and user.role == 3
+  end
+
+  def decrease_role?
+    user and user.role == 3
+  end
+
 end

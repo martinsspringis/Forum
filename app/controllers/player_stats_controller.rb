@@ -5,10 +5,15 @@ class PlayerStatsController < ApplicationController
 	end
 
 	def new
-    @players = @game.team.players
+    @players = Player.all.where("team_id = ? or team_id = ?", @game.team, 3)
     @player_stat = PlayerStat.new
     authorize @player_stat
 	end
+
+  def edit
+  	@player_stat = PlayerStat.find(params[:id])
+  	authorize @player_stat
+  end
 
 	def create
 		@player_stat = @game.player_stats.build(player_stat_params)
@@ -17,6 +22,17 @@ class PlayerStatsController < ApplicationController
 			redirect_to new_game_boxscore_path(@game)
 		else render :new
 		end
+	end
+
+
+	def update
+		@player_stat = PlayerStat.find(params[:id])
+		if @player_stat.update(player_stat_params)
+			redirect_to new_game_boxscore_path(@player_stat.game)
+		else 
+			render :edit
+		end
+		
 	end
 
 	private
