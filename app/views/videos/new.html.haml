@@ -1,0 +1,6 @@
+%h1 Add new video from youtube
+
+= simple_form_for @video do |f|
+  = f.input :video_link
+  = f.collection_radio_buttons :video_type, [[1, "Full game highlights"], [2, "Player highlights"], [3, "Compilations"]], :first, :last
+  = f.button :submit, "Add video"

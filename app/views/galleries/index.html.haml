@@ -1,1 +1,6 @@
 %h1 Fun stuff coming soon
+
+- if user_signed_in? && current_user.role >= 2 
+	= link_to "Add new image", new_image_path
+	%br
+	= link_to "Add video from youtube", new_video_path

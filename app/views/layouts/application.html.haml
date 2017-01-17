@@ -6,8 +6,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body#body
+    = image_tag "background", id: "background_img"
     %div
-      = image_tag "temporary_banner", id: "nyk_banner"
+      = image_tag "knicksand1", id: "nyk_banner"
       %ul.list-inline#navigation
         %li= link_to "home", root_path
         %li= link_to "forum", articles_path

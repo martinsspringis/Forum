@@ -1,7 +1,7 @@
-- if user_signed_in? && current_user.role == 3 && @user.role == 1 && @user.blocked = false
+- if user_signed_in? && current_user.role == 3 && @user.role == 1 && @user.blocked == false
   = link_to "Give moderator permissions", increase_role_user_path(@user), method: :put, data: {confirm: "Are you sure?"}
   %br
-- elsif user_signed_in? && current_user.role == 3 && @user.role == 2 && @user.blocked = false
+- elsif user_signed_in? && current_user.role == 3 && @user.role == 2 && @user.blocked == false
   = link_to "Take away moderator permissions", decrease_role_user_path(@user), method: :put, data: {confirm: "Are you sure?"}
   %br
 

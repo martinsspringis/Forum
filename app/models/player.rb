@@ -2,6 +2,7 @@ class Player < ActiveRecord::Base
 	belongs_to :team
 
 	has_many :player_stats
+  has_many :images
 
 	has_attached_file :picture, styles: { large: "600x600", medium: "300x300", thumb: "50x50"}
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/

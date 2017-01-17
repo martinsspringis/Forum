@@ -32,8 +32,11 @@ class UsersController < ApplicationController
   def block
     @user = User.find(params[:id])
     authorize @user
-    @user.blocked = true
-    @user.save
+    
+    if @user.role == 1
+      @user.blocked = true
+      @user.save
+    end
 
     if current_user.role == 3
       redirect_to users_path
@@ -44,8 +47,11 @@ class UsersController < ApplicationController
   def unblock
     @user = User.find(params[:id])
     authorize @user
-    @user.blocked = false
-    @user.save
+    
+    if @user.role == 1
+      @user.blocked = false
+      @user.save
+    end
 
     if current_user.role == 3
       redirect_to users_path

@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     end
   end
   resources :players
+  resources :images
+  resources :videos
   
   #get send_summary, to: 'administrations_controller#send_summary', as: :send_summary
   root 'home#index'

@@ -1,9 +1,7 @@
 %h1= @article.author
 
--@article.images.each do |image|
-  = image_tag image.url(:medium)
-
 %h1= @article.title
+= image_tag @article.icon.url(:medium)
 %p= @article.content
 
 

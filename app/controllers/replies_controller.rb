@@ -28,7 +28,7 @@ class RepliesController < ApplicationController
 	private
 
 	def reply_params
-		params.require(:reply).permit(:parent_id, :author, :content)
+		params.require(:reply).permit(:parent_id, :author, :content, :image)
 	end
 
 	def load_article

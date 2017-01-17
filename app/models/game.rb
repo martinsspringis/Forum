@@ -2,6 +2,7 @@ class Game < ActiveRecord::Base
 	belongs_to :team
 
 	has_many :player_stats
+	has_many :images
 
 	validates :team_id, presence: true
 	validates :at, presence: true  #ja nebūs izvēlēta spēles vieta, tad nedrīkstēs saglabāt

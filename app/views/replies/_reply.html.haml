@@ -5,6 +5,8 @@
     -else
       = reply.author
   %div.content
+    - if reply.image
+    = image_tag reply.image.url(:medium)
     = reply.content
   %div.created_at
     = format_time(reply.created_at) 
