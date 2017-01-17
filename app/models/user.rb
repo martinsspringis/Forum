@@ -102,4 +102,5 @@ end
 #  provider               :string
 #  uid                    :string
 #  role                   :integer          default(1)
+#  skin_id                :integer
 #

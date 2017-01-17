@@ -3,4 +3,5 @@
 = simple_form_for @image do |f|
 	= f.input :image, label: "Choose picture"
 	= f.input :player_id, label: "Choose player", collection: @players
+	= f.input :game_id, label: "Choose game", collection: @games
 	= f.button :submit

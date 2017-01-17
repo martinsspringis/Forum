@@ -6,7 +6,13 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body#body
-    = image_tag "background", id: "background_img"
+    - if user_signed_in?
+      - if current_user.skin_id == nil
+        = image_tag "skin6", class: "background_img"
+      - else
+        = image_tag "skin#{current_user.skin_id}", class: "background_img"
+    -else
+      = image_tag "skin6", class: "background_img"
     %div
       = image_tag "knicksand1", id: "nyk_banner"
       %ul.list-inline#navigation

@@ -2,6 +2,7 @@ class ImagesController < ApplicationController
   def new
   	@nyk = Team.where(name: "New York Knicks")
     @players = Player.all.where(team_id: @nyk)
+    @games = Game.all.where("date < ?", Time.now)
 
   	@image = Image.new
   end

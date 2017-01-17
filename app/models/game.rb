@@ -7,6 +7,12 @@ class Game < ActiveRecord::Base
 	validates :team_id, presence: true
 	validates :at, presence: true  #ja nebūs izvēlēta spēles vieta, tad nedrīkstēs saglabāt
 	validates :date, presence: true #Spēlei ir noteikti jābūt laikam
+
+	def name
+		if team.name.present? or date.present?
+		  "vs #{team.name} #{date}"
+		end
+	end
 end
 
 # == Schema Information
