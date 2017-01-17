@@ -1,16 +1,16 @@
 %div#boxscore_new
-  %h1= "Create boxscore"
+  %h1= t(:fill_stats)
   %h2= "New York Knicks vs #{@game.team.name}"
   %h2= @game.date
 
-  = link_to "Add player", new_game_player_stat_path(@game)
+  = link_to t(:add_player), new_game_player_stat_path(@game)
 
   %br
   - if @game.player_stats.count > 0
-    %h3= "Completed New York Knicks players:"
+    %h3= "#{t(:completed_nyk_players)}:"
     %table.table
       %tr
-        %th Player name
+        %th= t(:player)
         %th Minutes
         %th FGM
         %th FGA
@@ -48,14 +48,14 @@
             %td= player.fouls
             %td= player.pts
             %td= player.eff_factor
-            %td= link_to "edit", edit_game_player_stat_path(@game, player)
+            %td= link_to t(:edit), edit_game_player_stat_path(@game, player)
 
   %br
   - if @game.player_stats.count > 0
-    %h3= "Completed #{@game.team.name} players:"
+    %h3= "#{t(:completed_p)} #{@game.team.name} #{t(:players)}:"
     %table.table
       %tr
-        %th Player name
+        %th= t(:player)
         %th Minutes
         %th FGM
         %th FGA
@@ -93,12 +93,12 @@
             %td= player.fouls
             %td= player.pts
             %td= player.eff_factor
-            %td= link_to "edit", edit_game_player_stat_path(@game, player)
+            %td= link_to t(:edit), edit_game_player_stat_path(@game, player)
 
   %br
   %br
   - if @game.reviewed == false
-    = link_to "This boxscore is ready for showing", reviewed_game_path(@game), method: :put
+    = link_to t(:boxscore_ready), reviewed_game_path(@game), method: :put
   - else
     %h3#boxscore_published This boxscore is published
     

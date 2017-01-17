@@ -1,32 +1,32 @@
 %div#users_index
-  %h1 Users
+  %h1= t(:users)
 
   %table.table
-    %th username
-    %th email address
-    %th status
-    %th warnings
-    %th role
+    %th= t(:nickname)
+    %th= t(:epasts)
+    %th= t(:status)
+    %th= t(:warnings)
+    %th= t(:role)
     -@users.each do |user|
       %tr
         %td= link_to user.nickname, user_path(user)
         %td= user.email
         %td
           -if user.blocked == false
-            = "active"
+            = t(:active)
           -else
-            = "user is blocked"
+            = t(:blocked)
         %td= user.warnings
         %td
           -if user.role == 3
-            = "administrator"
+            = t(:admin)
           -elsif user.role == 2
-            = "moderator"
+            = t(:moderator)
           -else
-            = "user"
+            = t(:user)
         
         -if user.blocked == false
-          %td= link_to "block", block_user_path(user), method: :put, remote: :true, data:{confirm: "Are   you sure?"}
+          %td= link_to t(:block), block_user_path(user), method: :put, remote: :true, data:{confirm: "#{t(:are_you_sure)}?"}
       
         -if user.blocked == true
-          %td= link_to "unblock", unblock_user_path(user), method: :put, remote: :true, data:{confirm: "  Are you sure?"}
+          %td= link_to t(:unblock), unblock_user_path(user), method: :put, remote: :true, data:{confirm: "#{t(:are_you_sure)}"}

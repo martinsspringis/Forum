@@ -1,4 +1,4 @@
-%h1 Boxscores that are waiting to be filled
+%h1= t(:pending_boxscores)
 
 - @pending_boxscores.each do |p|
   %br
@@ -11,5 +11,5 @@
   %br
   = p.date
   %br
-  = link_to "Fill stats", new_game_boxscore_path(p)
+  = link_to t(:fill_stats), new_game_boxscore_path(p)
   %br

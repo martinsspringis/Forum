@@ -1,7 +1,6 @@
-%h1 HERE YOU WILL BE ABLE TO ADD PHOTOS
-
+%h1= t(:add_new_image)
 = simple_form_for @image do |f|
-	= f.input :image, label: "Choose picture"
-	= f.input :player_id, label: "Choose player", collection: @players
-	= f.input :game_id, label: "Choose game", collection: @games
-	= f.button :submit
+	= f.input :image, label: t(:choose_image)
+	= f.input :player_id, label: t(:choose_player), collection: @players
+	= f.input :game_id, label: t(:choose_game), collection: @games
+	= f.button :submit, t(:add_image)

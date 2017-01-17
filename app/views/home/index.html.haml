@@ -64,7 +64,7 @@
 
   %br
 
-  %h2 Last games
+  %h2= t(:last_games)
   -@last_games.each do |game|
     %br
     %p= "NYK vs #{game.team.name}"
@@ -73,14 +73,14 @@
     -if game.at == 'H'
       %p= "At MSG"
     -else
-      %p= "Away game"
+      %p= t(:away_game)
 
     -if game.nyk_points and game.opponent_points
       %p= "#{game.nyk_points}:#{game.opponent_points}"
 
   %br
   
-  %h2 Upcoming games
+  %h2= t(:upcoming_games)
   -@upcoming_games.each do |game|
     %br
     %p= "NYK vs #{game.team.name}"
@@ -89,4 +89,4 @@
     -if game.at == 'H'
       %p= "At MSG"
     -else
-      %p= "Away game"
+      %p= t(:away_game)

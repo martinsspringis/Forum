@@ -51,6 +51,8 @@ gem 'omniauth-twitter'
 gem 'bootstrap-sass'
 #simple forms
 gem 'simple_form'
+#for translations in simple forms
+gem 'rails-i18n'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

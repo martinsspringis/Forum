@@ -9,8 +9,8 @@
 
 = simple_form_for([@article, @reply]) do |f|
   -unless user_signed_in?
-    = f.input :author, label: "Author: "
-  = f.input :content, label: "Reply: "
-  = f.input :image, label: "Choose image: "
-  = f.button :submit, "Reply"  
+    = f.input :author, label: "#{t(:author)}: "
+  = f.input :content, label: "#{t(:reply)}: "
+  = f.input :image, label: "#{t(:choose_image)}: "
+  = f.button :submit, "#{t(:post)}"  
   

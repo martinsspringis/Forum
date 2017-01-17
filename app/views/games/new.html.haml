@@ -1,9 +1,9 @@
-%h1 Add new game
+%h1= t(:add_new_game)
 
 = simple_form_for @game do |f|
-  = f.input :team_id, label: "Select opponent: ", collection: @teams
-  = f.input :date
-  = f.collection_radio_buttons :at, [['H', "Home game"], ['A', "Away game"]], :first, :last
-  = f.input :nyk_points
-  = f.input :opponent_points
-  = f.button :submit, "Add game"
+  = f.input :team_id, label: "#{t(:select_opponent)}: ", collection: @teams
+  = f.input :date, label: "#{t(:date_ge)}"
+  = f.collection_radio_buttons :at, [['H', "#{t(:home_game)}"], ['A', "#{t(:away_game)}"]], :first, :last
+  = f.input :nyk_points, label: t(:nyk_points)
+  = f.input :opponent_points, label: t(:op_points)
+  = f.button :submit, label: t(:add_game)

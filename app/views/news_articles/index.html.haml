@@ -1,9 +1,11 @@
 - if user_signed_in? && current_user.role >= 2
-  = link_to "New article", new_news_article_path, class: "btn btn-primary"
+  = link_to t(:new_article), new_news_article_path, class: "btn btn-primary"
 
 %div#news_articles_index
   - @articles.order(created_at: :desc).each do |news_article|
     %div
-      %h1= news_article.title
-      %p= news_article.article
-      = link_to "Read this article", news_article_path(news_article)
+      -if news_article.image?
+        = image_tag news_article.image.url(:medium)
+      -else
+        = image_tag "default_news_image"
+      %h1= link_to news_article.title, news_article_path(news_article)

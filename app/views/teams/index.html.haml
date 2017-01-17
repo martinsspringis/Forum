@@ -1,7 +1,7 @@
-%h1 List of teams:
+%h1= t(:list_of_teams)
 
 -if user_signed_in? && current_user.role == 3
-  = link_to "add team", new_team_path
+  = link_to t(:add_new_team), new_team_path
 
 %br
 -@teams.each do |team|

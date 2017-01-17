@@ -8,7 +8,7 @@
     %h1= "#{@game.nyk_points} : #{@game.opponent_points}"
 
   - if user_signed_in? && current_user.role >= 2
-    = link_to "edit boxscore", new_game_boxscore_path(@game)
+    = link_to t(:edit_stats), new_game_boxscore_path(@game)
 
   %br
 
@@ -16,9 +16,9 @@
     %br
     - if @game.player_stats.count > 0
       %h3= "New York Knicks:"
-      %table.table
+      %table.table.table-hover
         %tr
-          %th Player name
+          %th= t(:player)
           %th Minutes
           %th FGM
           %th FGA
@@ -60,9 +60,9 @@
     %br
     - if @game.player_stats.count > 0
       %h3= "#{@game.team.name}:"
-      %table.table
+      %table.table.table-hover
         %tr
-          %th Player name
+          %th= t(:player)
           %th Minutes
           %th FGM
           %th FGA

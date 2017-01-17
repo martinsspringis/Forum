@@ -6,10 +6,11 @@
 
 
 -if current_user == @article.user
-  =link_to "Edit article", edit_article_path(@article)
-  
+  =link_to t(:edit_article), edit_article_path(@article)
+  %br
+
 -if user_signed_in? and current_user.role == 3
-  =link_to "Delete article", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}
+  =link_to t(:delete_article), article_path(@article), method: :delete, data: {confirm: "#{t(:are_you_sure)}?"}
 
 
 = render "replies/form"

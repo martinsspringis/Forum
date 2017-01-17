@@ -1,16 +1,16 @@
-%h1 Add new player
+%h1= t(:add_new_player)
 
 = simple_form_for @player do |f|
-  = f.input :team_id, label: "Choose team: ", collection: @teams
-  = f.input :position, label: "Select position: ", collection: ["C","PF","SF","SG","PG"], selected: "C"
-  = f.input :first_name, placeholder: "First name"
-  = f.input :last_name, placeholder: "Last name"
-  = f.input :number, label: "Jersey number: "
-  = f.input :picture, label: "Choose picture: "
-  = f.input :from, placeholder: "From"
-  = f.input :height, label: "Height in centimeters: "
-  = f.input :weight, label: "Weight in kilograms: "
-  = f.input :born, start_year: Date.today.year - 50, end_year: Date.today.year - 15, label: "Born date: "
-  = f.input :nba_debut, start_year: Date.today.year - 30, end_year: Date.today.year, label: "NBA debut: "
-  = f.input :bio, placeholder: "Biography"
-  = f.button :submit
+  = f.input :team_id, label: "#{t(:choose_team)}: ", collection: @teams
+  = f.input :position, label: "#{t(:select_position)}: ", collection: ["C","PF","SF","SG","PG"], selected: "C"
+  = f.input :first_name, label: "#{t(:name)}: "
+  = f.input :last_name, label: "#{t(:surname)}: "
+  = f.input :number, label: "#{t(:jersey_nr)}: "
+  = f.input :picture, label: "#{t(:choose_image)}: "
+  = f.input :from, label: "#{t(:from)}: "
+  = f.input :height, label: "#{t(:height)}: "
+  = f.input :weight, label: "#{t(:weight)}: "
+  = f.input :born, start_year: Date.today.year - 50, end_year: Date.today.year - 15, label: "#{t(:born)}: "
+  = f.input :nba_debut, start_year: Date.today.year - 30, end_year: Date.today.year, label: "#{t(:nba_debut)}: "
+  = f.input :bio, label: "#{t(:biography)}: "
+  = f.button :submit, t(:save)

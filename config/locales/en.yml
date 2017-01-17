@@ -20,4 +20,140 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Hello"
+  change_language: "Changle language to"
+  home: Home
+  forum: Forum
+
+  pending_boxscores: "Pending game stats"
+
+  new_badword: "New word to be censored"
+  save_word: "Save word"
+
+  title: "Title"
+  content: "Content"
+  save_article: "Save article"
+  choose_image: "Choose image"
+
+  last_games: "Last games"
+  away_game: "Away game"
+  upcoming_games: "Upcoming games"
+  are_you_sure: "Are you sure"
+  completed_nyk_players: "Completed New York Knicks players"
+  completed_p: "Completed"
+  players: "Players"
+  boxscore_ready: "Boxscore is ready"
+
+  activate: "Activate"
+  to_confirm: "To confirm your account, click on this link"
+  thank_you_for_reg: "Thank you for registration in our website"
+
+  signing_up: "Sign up"
+  didnt_receive_confirmation: "Didn't receive confirmation instructions"
+  forgot_pas: "Forgot your password"
+  send_instr: "Send me reset password instructions"
+  resend_conf: "Resend confirmation instructions"
+
+  add_new_image: "Add new image"
+  add_video_youtube: "Add video from youtube"
+  game_highlights: "Game highlights"
+  player_highlights: "Player highlights"
+  compilations: "MIXTAPE"
+
+  home_game: "Home game"
+  away_game: "Away game"
+  date_ge: "Game time"
+  nyk_points: "NYK points"
+  points: "points"
+  hide: "Hide"
+  update: "Update"
+
+  add_new_game: "Add new game"
+  edit_game: "Edit game"
+
+  select_opponent: "Select opponent"
+  add_game: "Add game"
+  op_points: "Opponent points"
+
+  edit_stats: "Edit stats"
+
+  add_image: "Add image"
+  choose_player: "Choose player"
+  choose_game: "Choose game"
+
+  edit_player_stats: "Edit player stats"
+  min_played: "Minutes played"
+  sec_played: "Seconds played"
+  fgm: "Field goals made"
+  fga: "Field goals attempted"
+  thrpm: "3 pointers made"
+  thrpa: "3 pointers attempted"
+  ftm: "Free throws made"
+  fta: "Free throws attempted"
+  rebounds: "Total rebounds"
+  off_rebs: "Offensive rebounds"
+  assists: "Assists"
+  blocks: "Blocks"
+  steals: "Steals"
+  turnouvers: "Turnouvers"
+  fouls: "Fouls"
+  save: "Save"
+
+  new_player_stat: "Player stats"
+  add_nyk_player: "NYK player stats"
+
+  edit_player_profile: "Edit player profile"
+  choose_team: "Choose team"
+  select_position: "Select position"
+  jersey_nr: "Jersey number"
+  from: "From"
+  height: "Height"
+  weight: "Weight"
+  born: "Born"
+  nba_debut: "NBA debut"
+  biography: "Biography"
+  name: "First name"
+  surname: "Last name"
+  add_new_player: "Add new player"
+
+  players_list: "List of players"
+
+  edit_player_profile: "Edit players profile"
+  team: "Team"
+  players_average_season_stats: "Average season stats"
+  position: Position
+  last_5_games: "Last 5 games"
+
+  new_reply: "New reply"
+  reply: "Reply"
+  post: "Post"
+  to_reply: "Reply"
+  list_of_teams: "List of teams"
+  add_new_team: "Add new team"
+  add_team: "Add team"
+  name_of_the_team: "Name of the team"
+  team_logo: "Team logo"
+
+  edit_users_profile: "Edit users profile"
+  choose_skin: "Choose skin"
+  save_changes: "Save changes"
+  status: "Status"
+  warnings: "Warnings"
+  role: "Role"
+  active: "Active"
+  blocked: "Blocked"
+  admin: "Administrator"
+  moderator: "Moderator"
+  user: "User"
+  block: "Block"
+  unblock: "Unblock"
+
+  user_has_been_blocked: "This user has been blocked"
+  full_name: "Name"
+  articles: "Articles"
+  give_moderator_permissions: "Give moderator permissions"
+  take_away_moderator_permissions: "Take away moderator permissions"
+
+  video_link: "Video embedded link"
+  add_video: "Add video"
+  video_type: "Video type"

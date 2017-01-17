@@ -1,15 +1,15 @@
 - if user_signed_in? && current_user.role == 3 && @user.role == 1 && @user.blocked == false
-  = link_to "Give moderator permissions", increase_role_user_path(@user), method: :put, data: {confirm: "Are you sure?"}
+  = link_to t(:give_moderator_permissions), increase_role_user_path(@user), method: :put, data: {confirm: "#{t(:are_you_sure)}?"}
   %br
 - elsif user_signed_in? && current_user.role == 3 && @user.role == 2 && @user.blocked == false
-  = link_to "Take away moderator permissions", decrease_role_user_path(@user), method: :put, data: {confirm: "Are you sure?"}
+  = link_to t(:take_away_moderator_permissions), decrease_role_user_path(@user), method: :put, data: {confirm: "#{t(:are_you_sure)}?"}
   %br
 
 
 - if user_signed_in? && current_user.role >= 2 && @user.blocked == false && @user.role == 1
-  = link_to "block", block_user_path(@user), method: :put, data:{confirm: "Are you sure?"}
+  = link_to t(:block), block_user_path(@user), method: :put, data:{confirm: "#{t(:are_you_sure)}?"}
 - elsif user_signed_in? && current_user.role >= 2 && @user.blocked == true && @user.role == 1
-  = link_to "unblock", unblock_user_path(@user), method: :put, data:{confirm: "Are you sure?"}
+  = link_to t(:unblock), unblock_user_path(@user), method: :put, data:{confirm: "#{t(:are_you_sure)}?"}
 
 %h1= @user.nickname
 
@@ -19,19 +19,19 @@
   = image_tag "default_avatar.jpg", size: "240x240"
 
 - if @user.blocked
-  %h1 This user has been blocked
+  %h1= t(:user_has_been_blocked)
 -else
-  %h3= "Name: #{@user.full_name}"
+  %h3= "#{t(:full_name)}: #{@user.full_name}"
 
-  %h2= "Articles: "
+  %h2= "#{t(:articles)}: "
   
   %table
     -unless @articles.any?
       %tr
         %td No articles
     %tr
-      %th Title
-      %th Replies
+      %th= t(:title)
+      %th= t(:replies)
     - @articles.each do |article|
       %tr
         %td= article.title
