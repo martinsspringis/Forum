@@ -27,3 +27,47 @@
 
 %div.col-md-3
   =link_to t(:new_article), new_article_path, class: "btn btn-primary", id: "new_article"
+  
+  %br
+  %br
+
+  .side-bar#articles_sidebar
+    #calendar
+      %h5#month
+        = link_to "<", date: @date.prev_month
+        = @date.strftime("%B %Y")
+        = link_to ">", date: @date.next_month
+      = calendar @date do |date|
+        = date.day
+        - @games.each do |game|
+          - if format_for_calendar(game.date) == "#{date}"
+            = link_to image_tag("logo/#{game.team.name}", size: "20"), game_path(game)
+
+    %br
+
+    %h2 Last games
+    -@last_games.each do |game|
+      %br
+      %p= "NYK vs #{game.team.name}"
+      %p= format_time(game.date)
+      
+      -if game.at == 'H'
+        %p= "At MSG"
+      -else
+        %p= "Away game"
+  
+      -if game.nyk_points and game.opponent_points
+        %p= "#{game.nyk_points}:#{game.opponent_points}"
+
+    %br
+  
+    %h2 Upcoming games
+    -@upcoming_games.each do |game|
+      %br
+      %p= "NYK vs #{game.team.name}"
+      %p= format_time(game.date)
+    
+      -if game.at == 'H'
+        %p= "At MSG"
+      -else
+        %p= "Away game"

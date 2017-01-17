@@ -4,6 +4,7 @@ class AdministrationsController < ApplicationController
 
   def show  
     @games = Game.all.where("nyk_points is ? OR opponent_points is ?", nil, nil).where("date < ?", Time.now)
+    @hidden_games = Game.all.where(hidden: true)
     unless user_signed_in? and current_user.role >= 2
       flash[:alert] = "You don't have permission to do that!"
       redirect_to root_path

@@ -14,28 +14,28 @@
       %th APG
       %th STL
       %th BPG
-    - @players.each do |player|
-      %tr
-        -if player.player_stats.count > 0
-          %td= image_tag player.picture.url(:thumb), class: "player_thumb center-block" 
-          %td= link_to player.name, player_path(player)
-          %td= min_per_game(player.player_stats.sum(:min), player.player_stats.sum(:sec), player.player_stats.count)
-          %td= shooting_percentage(player.player_stats.sum(:fgm), player.player_stats.sum(:fga))
-          %td= shooting_percentage(player.player_stats.sum(:three_m), player.player_stats.sum(:three_a))
-          %td= shooting_percentage(player.player_stats.sum(:ftm), player.player_stats.sum(:fta))
-          %td= player.player_stats.average(:pts)
-          %td= player.player_stats.average(:reb)
-          %td= player.player_stats.average(:ast)
-          %td= player.player_stats.average(:stl)
-          %td= player.player_stats.average(:blk)
-
-        -else
-          %td= player.name
-          %td 0.0
-          %td 0.0
-          %td 0.0
-          %td 0.0
-          %td 0.0
-          %td 0.0
-          %td 0.0
-          %td 0.0
+      - @players.each do |player|
+        %tr
+          -if player.player_stats.count > 0
+            %td= image_tag player.picture.url(:thumb), class: "player_thumb center-block" 
+            %td= link_to player.name, player_path(player)
+            %td= min_per_game(player.player_stats.sum(:min), player.player_stats.sum(:sec), player.player_stats.count)
+            %td= shooting_percentage(player.player_stats.sum(:fgm), player.player_stats.sum(:fga))
+            %td= shooting_percentage(player.player_stats.sum(:three_m), player.player_stats.sum(:three_a))
+            %td= shooting_percentage(player.player_stats.sum(:ftm), player.player_stats.sum(:fta))
+            %td= player.player_stats.average(:pts)
+            %td= player.player_stats.average(:reb)
+            %td= player.player_stats.average(:ast)
+            %td= player.player_stats.average(:stl)
+            %td= player.player_stats.average(:blk)
+  
+          -else
+            %td= player.name
+            %td 0.0
+            %td 0.0
+            %td 0.0
+            %td 0.0
+            %td 0.0
+            %td 0.0
+            %td 0.0
+            %td 0.0

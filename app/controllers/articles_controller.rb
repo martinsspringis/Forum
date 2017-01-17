@@ -5,6 +5,10 @@ class ArticlesController < ApplicationController
 
 	def index
 		@articles = Article.all
+		@upcoming_games = Game.where("date > ?", Time.now).order(date: :asc).first(3)
+		@last_games = Game.where("date < ?", Time.now).order(date: :desc).first(3)
+    @games = Game.all
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today	
 	end
 
 	def show

@@ -5,12 +5,12 @@
   %br
   = link_to "Add video from youtube", new_video_path
 
-%ul
+%ul.list-inline.video-list
   - @game_highlight_videos.each do |video|
     %li
-      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => "#{video.video_link}", :width => "560"}
+      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "240", :src => "#{video.video_link}", :width => "429"}
 
-%ul
+%ul.list
   - @player_highlight_videos.each do |video|
     %li
       %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => "#{video.video_link}", :width => "560"}

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  
+  before_action :set_locale
+
   include Pundit
 
   # Prevent CSRF attacks by raising an exception.
@@ -9,6 +10,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
 
   protected
   def configure_permitted_parameters

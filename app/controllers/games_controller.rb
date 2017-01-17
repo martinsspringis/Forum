@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   helper FormattingHelper	
 
 	def index
-		@games = Game.all.order(date: :desc)
+		@games = Game.all.where(hidden: false).order(date: :desc)
 	end
 
 	def show

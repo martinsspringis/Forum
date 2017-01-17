@@ -1,9 +1,91 @@
--if user_signed_in? && current_user.role == 3
-  = link_to "Edit player profile", edit_player_path(@player)
+.container
+  -if user_signed_in? && current_user.role == 3
+    = link_to "Edit player profile", edit_player_path(@player)
 
-%h1= @player.name
-%p= "Position: #{@player.position}"
-%h3= "Team: #{@player.team.name}"
-= image_tag @player.picture.url(:medium)
-%p= "Height: #{@player.height}" 
-%o= "Weight: #{@player.weight}"
+  %h1= @player.name
+  %p= "Position: #{@player.position}"
+  %h3= "Team: #{@player.team.name}"
+  = image_tag @player.picture.url(:medium)
+  %p= "Height: #{@player.height} cm" 
+  %p= "Weight: #{@player.weight} kg"
+
+  %h3 Player average season stats
+  %table.table
+    %tr
+      %th
+      %th MPG
+      %th FG%
+      %th 3P%
+      %th FT%
+      %th PPG
+      %th RPG
+      %th APG
+      %th STL
+      %th BPG
+    %tr
+      -if @player.player_stats.count > 0
+        -if @player.picture?
+          %td= image_tag @player.picture.url(:thumb), class: "player_thumb center-block" 
+        -else
+          = image_tag "default_icon", class: "player_thumb center-block"
+        %td= min_per_game(@player.player_stats.sum(:min), @player.player_stats.sum(:sec), @player.player_stats.count)
+        %td= shooting_percentage(@player.player_stats.sum(:fgm), @player.player_stats.sum(:fga))
+        %td= shooting_percentage(@player.player_stats.sum(:three_m), @player.player_stats.sum(:three_a))
+        %td= shooting_percentage(@player.player_stats.sum(:ftm), @player.player_stats.sum(:fta))
+        %td= @player.player_stats.average(:pts)
+        %td= @player.player_stats.average(:reb)
+        %td= @player.player_stats.average(:ast)
+        %td= @player.player_stats.average(:stl)
+        %td= @player.player_stats.average(:blk)
+
+      -else
+        %td= @player.name
+        %td 0.0
+        %td 0.0
+        %td 0.0
+        %td 0.0
+        %td 0.0
+        %td 0.0
+        %td 0.0
+        %td 0.0
+
+  %br
+  %h3 Last 5 games
+ 
+  %table.table
+    %tr
+      %th Game
+      %th Minutes
+      %th FG%
+      %th FGM-FGA
+      %th 3P%
+      %th 3PTM - 3PTA
+      %th FT%
+      %th FTM - FTA
+      %th Points
+      %th Rebounds
+      %th Assists
+      %th Steals
+      %th Blocks
+    - a = 1
+    - @last_stats.each do |stat|
+      -if a <= 5 and stat and (stat.min != 0 || stat.sec != 0)
+        -if stat.game.reviewed == true
+          - a += 1
+          %tr
+            -if stat.game.at == 'H'
+              %td= "vs #{stat.game.team.name}\n #{format_date(stat.game.date)}"
+            -else
+              %td= "@#{stat.game.team.name}\n #{format_date(stat.game.date)}"
+            %td= "#{stat.min}:#{stat.sec}"
+            %td= shooting_percentage(stat.fgm, stat.fga)
+            %td= "#{stat.fgm}-#{stat.fga}"
+            %td= shooting_percentage(stat.three_m, stat.three_a)
+            %td= "#{stat.three_m}-#{stat.three_a}"
+            %td= shooting_percentage(stat.ftm, stat.fta)
+            %td= "#{stat.ftm}-#{stat.fta}"
+            %td= stat.pts
+            %td= stat.reb
+            %td= stat.ast
+            %td= stat.stl
+            %td= stat.blk

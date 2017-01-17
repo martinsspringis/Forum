@@ -26,3 +26,5 @@ $ ->
     $("#facebox").css("top", "60px")
 
   $("a.reply-button").facebox()
+
+  $('.carousel').carousel()

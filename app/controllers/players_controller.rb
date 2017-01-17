@@ -1,10 +1,13 @@
 class PlayersController < ApplicationController
+  helper FormattingHelper
+  helper StatsHelper	
 	def index
 		@players = Player.all
 	end
 
 	def show
 		@player = Player.find(params[:id])
+		@last_stats = @player.player_stats.reverse
 	end
 
 	def new

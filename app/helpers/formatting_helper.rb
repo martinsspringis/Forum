@@ -10,6 +10,11 @@ module FormattingHelper
   	if date.present?
   		date.strftime("%d.%m.%Y")
     end
-  
+  end
+
+  def format_for_calendar(date)
+    if date.present?
+      "#{date.strftime("%Y-%m-%d")}"
+    end
   end
 end

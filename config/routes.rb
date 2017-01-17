@@ -3,41 +3,44 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   
-  resources :articles do
-    resources :replies
-  end
-  resources :users do
-    member do
-      put "block"
-      put "unblock"
-      put "increase_role"
-      put "decrease_role"
+  scope "(:locale)", locale: /en|lv/ do
+    resources :articles do
+      resources :replies
     end
-  end
-  resource :administrations do
-    member do
-      get "send_summary"
-      get "pending"
+    resources :users do
+      member do
+        put "block"
+        put "unblock"
+        put "increase_role"
+        put "decrease_role"
+      end
     end
-  end
-  resource :home
-  resources :stats
-  resources :news_articles
-  resources :galleries
-  resources :teams
-  resources :games do
-    resources :boxscores
-    resources :player_stats
-    member do
-      put "reviewed"
+    resource :administrations do
+      member do
+        get "send_summary"
+        get "pending"
+      end
     end
+    resource :home
+    resources :stats
+    resources :news_articles
+    resources :galleries
+    resources :teams
+    resources :games do
+      resources :boxscores
+      resources :player_stats
+      member do
+        put "reviewed"
+      end
+    end
+    resources :players
+    resources :images
+    resources :videos
   end
-  resources :players
-  resources :images
-  resources :videos
   
+  get '/:locale' => 'home#index'
   #get send_summary, to: 'administrations_controller#send_summary', as: :send_summary
-  root 'home#index'
+  root to: 'home#index'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
