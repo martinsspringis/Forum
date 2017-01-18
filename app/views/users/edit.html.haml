@@ -1,22 +1,15 @@
-%h1= t(:edit_users_profile)
+.container
+  %h1.text-center= t(:edit_users_profile)
 
-- if @user.errors.any?
-  = pluralize(@user.errors.count, "error")
+  -if @user.asset?
+    = image_tag @user.asset.url(:large), id: "avatar", class: "center-block"
+  -else 
+    = image_tag "default_avatar.jpg", id: "avatar", class: "center-block"
 
-  %ul
-    - @user.errors.full_messages.each do |msg|
-      %li= msg
-
-
--if @user.asset?
-  = image_tag @user.asset.url(:large)
--else 
-  = image_tag "default_avatar.jpg", id: "default_avatar"
-
-= simple_form_for @user do |f|
-  = f.input :name, label: t(:name)
-  = f.input :surname, label: t(:surname)
-  = f.input :nickname, label: t(:nickname)
-  = f.input :asset, label: t(:choose_image)
-  = f.input :skin_id, label: t(:choose_skin), collection: 1..6
-  = f.button :submit, t(:save_changes)
+  = simple_form_for @user do |f|
+    = f.input :name, label: t(:name)
+    = f.input :surname, label: t(:surname)
+    = f.input :nickname, label: t(:nickname)
+    = f.input :asset, label: t(:choose_image)
+    = f.input :skin_id, label: t(:choose_skin), collection: 1..6
+    = f.button :submit, t(:save_changes)

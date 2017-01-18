@@ -1,5 +1,4 @@
 #body {
-
 	font-family: Merriweather;
 }
 
@@ -10,6 +9,7 @@
 .background_img{
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
+	height: 100%;
 	width: 100%;
 	position: fixed;
 	z-index: -100;
@@ -17,5 +17,4 @@
 
 .container{
 	background-color: white;
-	opacity: 0.9;
 }

@@ -1,14 +1,20 @@
--if user_signed_in? && current_user.role == 3
-  = link_to t(:delete_article), news_article_path(@article), method: :delete, data: {confirm: "#{t(:are_you_sure)}?"}
-  %br
+.container
+  -if user_signed_in? && current_user.role == 3
+    = link_to t(:delete_article), news_article_path(@article), method: :delete, data: {confirm: "#{t(:are_you_sure)}?"}
+    %br
+  -if user_signed_in? && current_user == @article.user
+    = link_to t(:edit_article), edit_news_article_path(@article)
+  .text-center
 
--if user_signed_in? && current_user == @article.user
-  = link_to t(:edit_article), edit_news_article_path(@article)
 
-%h1= @article.title
-%p= @article.article
-
-- if @article.image?
-  = image_tag @article.image.url(:large)
-- else
-  = image_tag "default_news_image"
+    %h1= @article.title
+    - if @article.image?
+      = image_tag @article.image.url(:large)
+    - else
+      = image_tag "default_news_image"
+    %p= @article.article
+  
+  -if @article.user
+    %i= "Author: #{@article.user.nickname}"
+    %br
+  %i= "Published at: #{@article.created_at}"

@@ -1,19 +1,21 @@
-%h1= @article.author
+.container
+  %p#article_author
+    %i= "Author: #{@article.author}"
 
-%h1= @article.title
-= image_tag @article.icon.url(:medium)
-%p= @article.content
+  -if current_user == @article.user
+    =link_to t(:edit_article), edit_article_path(@article)
+    %br
 
+  -if user_signed_in? and current_user.role == 3
+    =link_to t(:delete_article), article_path(@article), method: :delete, data: {confirm: "#{t(:are_you_sure)}?"}
 
--if current_user == @article.user
-  =link_to t(:edit_article), edit_article_path(@article)
+  %h1.text-center= @article.title
+  -if @article.icon?
+    = image_tag @article.icon.url(:medium), class: "center-block", id: "article_image"
   %br
+  %p.text-center= @article.content
 
--if user_signed_in? and current_user.role == 3
-  =link_to t(:delete_article), article_path(@article), method: :delete, data: {confirm: "#{t(:are_you_sure)}?"}
+  = render "replies/form"
 
-
-= render "replies/form"
-
-- if @replies
-  = nested_replies @replies.arrange(:order => :created_at)
+  - if @replies
+    = nested_replies @replies.arrange(:order => :created_at)

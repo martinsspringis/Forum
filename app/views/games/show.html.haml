@@ -1,102 +1,108 @@
-%div#game_show
-  %h1= "New York Knicks vs #{@game.team.name}"
-  - if @game.team.name == 'H'
-    %h1= "@New York"
-  - else
-    %h1= "@#{@game.team.name}"
-  - if @game.nyk_points and @game.opponent_points
-    %h1= "#{@game.nyk_points} : #{@game.opponent_points}"
+.container
+  %div#game_show.text-center
+    = image_tag "default_icon", class: "team_logo_show"    
+    %strong= "New York Knicks vs #{@game.team.name}"
+    - if @game.team.icon?
+      = image_tag @game.team.icon.url, class: "team_logo_show"
+    - if @game.nyk_points and @game.opponent_points
+      %br
+      %strong= "#{@game.nyk_points} : #{@game.opponent_points}"
+    - if @game.team.name == 'H'
+      %p= "@New York"
+    - else
+      %p= "@#{@game.team.name}"
+    %p= @game.date
 
-  - if user_signed_in? && current_user.role >= 2
-    = link_to t(:edit_stats), new_game_boxscore_path(@game)
-
-  %br
-
-  - if @game.reviewed == true and @game.player_stats.count > 0
-    %br
-    - if @game.player_stats.count > 0
-      %h3= "New York Knicks:"
-      %table.table.table-hover
-        %tr
-          %th= t(:player)
-          %th Minutes
-          %th FGM
-          %th FGA
-          %th 3PTM
-          %th 3PTA
-          %th FTM
-          %th FTA
-          %th OR
-          %th REB
-          %th AST
-          %th BLK
-          %th STL
-          %th TO
-          %th FOULS
-          %th PTS
-          %th +/-
-
-        - @game.player_stats.each do |player|
-          - if player.player.team.id == 3
-            %tr
-              %td= player.player.name
-              %td= player.game_time
-              %td= player.fgm
-              %td= player.fga
-              %td= player.three_m
-              %td= player.three_a
-              %td= player.ftm
-              %td= player.fta
-              %td= player.or
-              %td= player.reb
-              %td= player.ast
-              %td= player.blk
-              %td= player.stl
-              %td= player.to
-              %td= player.fouls
-              %td= player.pts
-              %td= player.eff_factor
+    - if user_signed_in? && current_user.role >= 2
+      = link_to t(:edit_stats), new_game_boxscore_path(@game)
 
     %br
-    - if @game.player_stats.count > 0
-      %h3= "#{@game.team.name}:"
-      %table.table.table-hover
-        %tr
-          %th= t(:player)
-          %th Minutes
-          %th FGM
-          %th FGA
-          %th 3PTM
-          %th 3PTA
-          %th FTM
-          %th FTA
-          %th OR
-          %th REB
-          %th AST
-          %th BLK
-          %th STL
-          %th TO
-          %th FOULS
-          %th PTS
-          %th +/-
 
-        - @game.player_stats.each do |player|
-          - if player.player.team == @game.team
-            %tr
-              %td= player.player.name
-              %td= player.game_time
-              %td= player.fgm
-              %td= player.fga
-              %td= player.three_m
-              %td= player.three_a
-              %td= player.ftm
-              %td= player.fta
-              %td= player.or
-              %td= player.reb
-              %td= player.ast
-              %td= player.blk
-              %td= player.stl
-              %td= player.to
-              %td= player.fouls
-              %td= player.pts
-              %td= player.eff_factor
+    - if @game.reviewed == true and @game.player_stats.count > 0
+      %br
+      - if @game.player_stats.count > 0
+        %h3= "New York Knicks:"
+        %table.table.table-hover
+          %tr
+            %th= t(:player)
+            %th Minutes
+            %th FGM
+            %th FGA
+            %th 3PTM
+            %th 3PTA
+            %th FTM
+            %th FTA
+            %th OR
+            %th REB
+            %th AST
+            %th BLK
+            %th STL
+            %th TO
+            %th FOULS
+            %th PTS
+            %th +/-
+
+          - @game.player_stats.each do |player|
+            - if player.player.team.id == 3
+              %tr
+                %td= player.player.name
+                %td= player.game_time
+                %td= player.fgm
+                %td= player.fga
+                %td= player.three_m
+                %td= player.three_a
+                %td= player.ftm
+                %td= player.fta
+                %td= player.or
+                %td= player.reb
+                %td= player.ast
+                %td= player.blk
+                %td= player.stl
+                %td= player.to
+                %td= player.fouls
+                %td= player.pts
+                %td= player.eff_factor
+
+      %br
+      - if @game.player_stats.count > 0
+        %h3= "#{@game.team.name}:"
+        %table.table.table-hover
+          %tr
+            %th= t(:player)
+            %th Minutes
+            %th FGM
+            %th FGA
+            %th 3PTM
+            %th 3PTA
+            %th FTM
+            %th FTA
+            %th OR
+            %th REB
+            %th AST
+            %th BLK
+            %th STL
+            %th TO
+            %th FOULS
+            %th PTS
+            %th +/-
+
+          - @game.player_stats.each do |player|
+            - if player.player.team == @game.team
+              %tr
+                %td= player.player.name
+                %td= player.game_time
+                %td= player.fgm
+                %td= player.fga
+                %td= player.three_m
+                %td= player.three_a
+                %td= player.ftm
+                %td= player.fta
+                %td= player.or
+                %td= player.reb
+                %td= player.ast
+                %td= player.blk
+                %td= player.stl
+                %td= player.to
+                %td= player.fouls
+                %td= player.pts
+                %td= player.eff_factor

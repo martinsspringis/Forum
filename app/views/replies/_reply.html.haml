@@ -1,15 +1,18 @@
 %div.reply
-  %div.author
-    -if reply.user.present?
-      = reply.user.nickname
-    -else
-      = reply.author
   %div.content
-    - if reply.image?
-      = image_tag reply.image.url(:medium)
-    = reply.content
-  %div.created_at
-    = format_time(reply.created_at) 
-  %div
-    -if reply.persisted?
-      = link_to t(:to_reply), new_article_reply_path(@article, :parent_id => reply), class: "reply-button", rel: "facebox"
+    %div.author
+      %strong
+        -if reply.user.present?
+          = reply.user.nickname
+        -else
+          = reply.author
+    %div.text
+      = reply.content
+      %br
+      - if reply.image?
+        = image_tag reply.image.url(:medium)
+    %div.created_at
+      = format_time(reply.created_at) 
+    %div
+      -if reply.persisted?
+        = link_to t(:to_reply), new_article_reply_path(@article, :parent_id => reply), class: "reply-button", rel: "facebox"

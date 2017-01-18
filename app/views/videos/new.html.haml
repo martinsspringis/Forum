@@ -1,6 +1,7 @@
-%h1= t(:add_video_youtube)
+.container
+  %h1= t(:add_video_youtube)
 
-= simple_form_for @video do |f|
-  = f.input :video_link, label: t(:video_link)
-  = f.collection_radio_buttons :video_type, [[1, "#{t(:game_highlights)}"], [2, "#{t(:player_highlights)}"], [3, "#{t(:compilations)}"]], :first, :last
-  = f.button :submit, t(:add_video)
+  = simple_form_for @video do |f|
+    = f.input :video_link, label: t(:video_link)
+    = f.collection_radio_buttons :video_type, [[1, "#{t(:game_highlights)}"], [2, "#{t(:player_highlights)}"], [3, "#{t(:compilations)}"]], :first, :last
+    = f.button :submit, t(:add_video)

@@ -1,6 +1,6 @@
 %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
 
-.container.col-md-7.col-md-offset-1
+.container.col-md-7.col-md-offset-1.home_container
   #myCarousel.carousel.slide{"data-ride" => "carousel"}
     / Indicators
     %ol.carousel-indicators
@@ -11,23 +11,23 @@
     .carousel-inner{:role => "listbox"}
       .item.active
         - if @articles.first.image?
-          = image_tag @articles.first.image.url(:large)
+          = image_tag @articles.first.image.url(:large), class: "center-block car_img"
         - else
-          = image_tag "default_news_image"
+          = image_tag "default_news_image", class: "center-block car_img"
         .carousel-caption
           %h3= link_to @articles.first.title, news_article_path(@articles.first)
       .item
         - if @articles.second.image?
-          = image_tag @articles.second.image.url(:large)
+          = image_tag @articles.second.image.url(:large), class: "center-block car_img"
         - else
-          = image_tag "default_news_image"
+          = image_tag "default_news_image", class: "center-block car_img"
         .carousel-caption
           %h3= link_to @articles.second.title, news_article_path(@articles.second)
       .item
         - if @articles.third.image?
-          = image_tag @articles.third.image.url(:large)
+          = image_tag @articles.third.image.url(:large), class: "center-block car_img"
         - else
-          = image_tag "default_news_image"
+          = image_tag "default_news_image", class: "center-block car_img"
         .carousel-caption
           %h3= link_to @articles.third.title, news_article_path(@articles.third)
   
@@ -41,15 +41,16 @@
 
   %br
   - @older_articles.each_slice(3) do |slice|
-    .row.text-center
+    %ul.list-inline
       -slice.each do |article|
-        - if article.image?
-          = image_tag article.image.url(:medium)
-        - else
-          = image_tag "default_news_image"
-        %h3= link_to article.title, news_article_path(article)
+        %li.news_thumb
+          - if article.image?
+            = image_tag article.image.url(:medium), class: "news_image"
+          - else
+            = image_tag "default_news_image", class: "news_image"
+          %h3.news_title= link_to article.title, news_article_path(article)
 
-.side-bar.col-md-2.col-md-offset-1
+.side-bar.col-md-3
 
   #calendar
     %h5#month
@@ -60,33 +61,43 @@
       = date.day
       - @games.each do |game|
         - if format_for_calendar(game.date) == "#{date}"
-          = link_to image_tag("logo/#{game.team.name}", size: "20"), game_path(game)
+          - if game.team.icon?
+            = link_to image_tag(game.team.icon.url, size: "20"), game_path(game)
 
   %br
+  .text-center
+    %h2
+      %strong= t(:last_games)
+    -@last_games.each do |game|
+      %br
+      = image_tag "default_icon", class: "team_logo_side"
+      %strong= link_to "NYK vs #{game.team.name}", game_path(game)
+      - if game.team.icon?
+        = image_tag game.team.icon.url, class: "team_logo_side"
+      %p= format_time(game.date)
+      
+      -if game.at == 'H'
+        %p= "At MSG"
+      -else
+        %p= t(:away_game)
+  
+      -if game.nyk_points and game.opponent_points
+        %p= "#{game.nyk_points}:#{game.opponent_points}"
 
-  %h2= t(:last_games)
-  -@last_games.each do |game|
     %br
-    %p= "NYK vs #{game.team.name}"
-    %p= format_time(game.date)
+  
+    %h2
+      %strong= t(:upcoming_games)
+    -@upcoming_games.each do |game|
+      %br
+      = image_tag "default_icon", class: "team_logo_side"
+      %strong= "NYK vs #{game.team.name}"
+      - if game.team.icon?
+        = image_tag game.team.icon.url, class: "team_logo_side"
+
+      %p= format_time(game.date)
     
-    -if game.at == 'H'
-      %p= "At MSG"
-    -else
-      %p= t(:away_game)
-
-    -if game.nyk_points and game.opponent_points
-      %p= "#{game.nyk_points}:#{game.opponent_points}"
-
-  %br
-  
-  %h2= t(:upcoming_games)
-  -@upcoming_games.each do |game|
-    %br
-    %p= "NYK vs #{game.team.name}"
-    %p= format_time(game.date)
-  
-    -if game.at == 'H'
-      %p= "At MSG"
-    -else
-      %p= t(:away_game)
+      -if game.at == 'H'
+        %p= "At MSG"
+      -else
+        %p= t(:away_game)

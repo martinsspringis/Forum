@@ -1,60 +1,56 @@
-%h1= t(:administration)
+.container#admin_show
+  
+  %ul.list-inline.text-center#administration_nav
+    %li= link_to t(:pending_boxscores), pending_administrations_path
+    %li= link_to t(:games), games_path
+    %li= link_to t(:players), players_path
+    %li= link_to t(:teams), teams_path
+    %li= link_to t(:users), users_path if current_user.role == 3
+    %li= link_to t(:send_summary), send_summary_administrations_path if current_user.role == 3
 
-= form_tag(administrations_path, method: "get") do
-  .field
-    = label_tag t(:new_badword)
-    = text_field_tag :word
-  .action
-    = submit_tag t(:save_word)
+  %br
+  %h1= t(:administration)
 
-= link_to t(:pending_boxscores), pending_administrations_path
-%br
+  = form_tag(administrations_path, method: "get") do
+    .field
+      = label_tag t(:new_badword)
+      = text_field_tag :word
+    .action
+      = submit_tag t(:save_word)
 
-= link_to t(:games), games_path
-%br
+  %hr
 
-= link_to t(:players), players_path
-%br
+  %div#awaiting_games
 
-= link_to t(:teams), teams_path
-%br
+    %h1= "#{t(:awaiting_game_results)}: "
 
-= link_to t(:users), users_path if current_user.role == 3
-%br
-
-= link_to t(:send_summary), send_summary_administrations_path if current_user.role == 3
-
-%div#awaiting_games
-
-  %h1= t(:awaiting_game_results)
-
-  -@games.each do |game|
-    %br
-    = "NYK vs #{game.team.name}"
-    %br
-    = format_time(game.date)
-    %br
-    = link_to t(:edit), edit_game_path(game)
-    %br
-
-/Hidden games which are faulty
-%div#hidden_games
-  - @hidden_games.each do |game|
-    %br
-    %br
-    = "NYK vs #{game.team.name}"
-    %br
-    - if game.at == 'H'
-      = "@New York"
-    - else
-      = "@#{game.team.name} stadium"
-    - if game.nyk_points and game.opponent_points
+    -@games.each do |game|
       %br
-      = "#{game.nyk_points} : #{game.opponent_points}"
-    %br
-    = format_time(game.date)
-    %br
-    = link_to t(:game_info), game_path(game)
-    %br
-    - if user_signed_in? && current_user.role == 3
+      = "NYK vs #{game.team.name}"
+      %br
+      = format_time(game.date)
+      %br
       = link_to t(:edit), edit_game_path(game)
+      %br
+  
+  %hr
+  /Hidden games which are faulty
+  %div#hidden_games
+    %h1= "#{t(:hidden_games)}: "
+    - @hidden_games.each do |game|
+      %br
+      %br
+      = link_to "NYK vs #{game.team.name}",game_path(game)
+      %br
+      - if game.at == 'H'
+        = "@New York"
+      - else
+        = "@#{game.team.name} stadium"
+      - if game.nyk_points and game.opponent_points
+        %br
+        = "#{game.nyk_points} : #{game.opponent_points}"
+      %br
+      = format_time(game.date)
+      %br
+      - if user_signed_in? && current_user.role == 3
+        = link_to t(:edit), edit_game_path(game)

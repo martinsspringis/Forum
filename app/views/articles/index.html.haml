@@ -44,30 +44,39 @@
             = link_to image_tag("logo/#{game.team.name}", size: "20"), game_path(game)
 
     %br
-
-    %h2= t(:last_games)
-    -@last_games.each do |game|
-      %br
-      %p= "NYK vs #{game.team.name}"
-      %p= format_time(game.date)
-      
-      -if game.at == 'H'
-        %p= "At MSG"
-      -else
-        %p= t(:away_game)
-  
-      -if game.nyk_points and game.opponent_points
-        %p= "#{game.nyk_points}:#{game.opponent_points}"
-
-    %br
-  
-    %h2= t(:upcoming_games)
-    -@upcoming_games.each do |game|
-      %br
-      %p= "NYK vs #{game.team.name}"
-      %p= format_time(game.date)
+    .text-center
+      %h2
+        %strong= t(:last_games)
+      -@last_games.each do |game|
+        %br
+        = image_tag "default_icon", class: "team_logo_side"
+        %strong= link_to "NYK vs #{game.team.name}", game_path(game)
+        - if game.team.icon?
+          = image_tag game.team.icon.url, class: "team_logo_side"
+        %p= format_time(game.date)
+        
+        -if game.at == 'H'
+          %p= "At MSG"
+        -else
+          %p= t(:away_game)
     
-      -if game.at == 'H'
-        %p= "At MSG"
-      -else
-        %p= t(:away_game)
+        -if game.nyk_points and game.opponent_points
+          %p= "#{game.nyk_points}:#{game.opponent_points}"
+
+      %br
+    
+      %h2
+        %strong= t(:upcoming_games)
+      -@upcoming_games.each do |game|
+        %br
+        = image_tag "default_icon", class: "team_logo_side"
+        %strong= "NYK vs #{game.team.name}"
+        - if game.team.icon?
+          = image_tag game.team.icon.url, class: "team_logo_side"
+
+        %p= format_time(game.date)
+      
+        -if game.at == 'H'
+          %p= "At MSG"
+        -else
+          %p= t(:away_game)

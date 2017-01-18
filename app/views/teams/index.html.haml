@@ -1,10 +1,12 @@
-%h1= t(:list_of_teams)
+.container
+  %h1= t(:list_of_teams)
 
--if user_signed_in? && current_user.role == 3
-  = link_to t(:add_new_team), new_team_path
+  -if user_signed_in? && current_user.role == 3
+    = link_to t(:add_new_team), new_team_path
 
-%br
--@teams.each do |team|
-  = image_tag team.icon.url(:thumb)
-  = team.name
   %br
+  %br
+  -@teams.each do |team|
+    = image_tag team.icon.url(:thumb), class: "team_logo"
+    = team.name
+    %br

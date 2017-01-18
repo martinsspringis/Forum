@@ -1,4 +1,40 @@
 .side-bar{
 	background-color: white;
-	opacity: 0.95;
+	opacity: 0.90;
+	margin-left: 15px;
+}
+
+.team_logo_side{
+	width: 30px;
+	height: 35px;
+}
+
+#myCarousel{
+	height: 550px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.item{
+	height: 550px;
+}
+
+.car_img{
+	width: 100%;
+}
+
+
+.news_image{
+  width: 100%;
+}
+
+.news_title{
+	font-size: 14px;
+}
+.news_thumb{
+  width: 30%;
+}
+
+#myCarousel a{
+	color: white;
 }

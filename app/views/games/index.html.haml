@@ -1,25 +1,33 @@
-%h1= t(:games)
+.container
+  %h1.text-center
+    %strong= t(:games)
+  %hr
 
-%div#games_index
+  %div#games_index
 
-  - if user_signed_in? && current_user.role == 3
-    = link_to t(:add_new_game), new_game_path
-
-
-  - @games.each do |game|
-    %br
-    %br
-    =link_to "NYK vs #{game.team.name}", game_path(game)
-    %br
-    - if game.at == 'H'
-      = "@New York"
-    - else
-      = "@#{game.team.name}"
-    - if game.nyk_points and game.opponent_points
-      %br
-      = "#{game.nyk_points} : #{game.opponent_points}"
-    %br
-    = format_time(game.date)
-    %br
     - if user_signed_in? && current_user.role == 3
-      = link_to t(:edit_game), edit_game_path(game)
+      = link_to t(:add_new_game), new_game_path
+
+    %div.text-center
+      - @games.each do |game|
+        %br
+        %br
+        = image_tag "default_icon", class: "team_logo"
+        %strong= link_to "NYK vs #{game.team.name}", game_path(game)
+        - if game.team.icon?
+          = image_tag game.team.icon.url, class: "team_logo"
+        - if game.nyk_points and game.opponent_points
+          %br
+          %strong= "#{game.nyk_points} : #{game.opponent_points}"
+          %br
+        %br
+        - if game.at == 'H'
+          = "@New York"
+        - else
+          = "@#{game.team.name}"
+        %br
+        = format_time(game.date)
+        %br
+        - if user_signed_in? && current_user.role == 3
+          = link_to t(:edit_game), edit_game_path(game)
+        %br

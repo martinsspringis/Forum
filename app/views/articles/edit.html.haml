@@ -1,4 +1,6 @@
-%h1= t(:edit_article)
+.container#form_article
+  %h1= t(:edit_article)
 
-= render "form"
-= link_to t(:back), article_path 
+  = render "form"
+  %br
+  = link_to t(:back), article_path, id: "back" 

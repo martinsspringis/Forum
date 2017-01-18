@@ -1,15 +1,19 @@
-%h1= t(:pending_boxscores)
+.container.text-center#pending_games
+  %h1= t(:pending_boxscores)
 
-- @pending_boxscores.each do |p|
-  %br
+  - @pending_boxscores.each do |p|
+    %br
+    - if p.at == 'H'
+      - home_team = "New York"
+    -else home_team = p.team.name
 
-  - if p.at == 'H'
-    - home_team = "New York"
-  -else home_team = p.team.name
-
-  = "NYK vs #{p.team.name} @#{home_team}"
-  %br
-  = p.date
-  %br
-  = link_to t(:fill_stats), new_game_boxscore_path(p)
-  %br
+    %strong
+      = "NYK vs #{p.team.name}"
+    %br
+    = " @#{home_team}"
+    %br
+    = p.date
+    %br
+    = link_to t(:fill_stats), new_game_boxscore_path(p)
+    %br
+    %br

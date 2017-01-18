@@ -1,11 +1,16 @@
-- if user_signed_in? && current_user.role >= 2
-  = link_to t(:new_article), new_news_article_path, class: "btn btn-primary"
-
-%div#news_articles_index
-  - @articles.order(created_at: :desc).each do |news_article|
-    %div
-      -if news_article.image?
-        = image_tag news_article.image.url(:medium)
-      -else
-        = image_tag "default_news_image"
-      %h1= link_to news_article.title, news_article_path(news_article)
+.container
+  %br
+  - if user_signed_in? && current_user.role >= 2
+    = link_to t(:new_article), new_news_article_path, class: "btn btn-primary"
+  %br
+  
+  %div#news_articles_index
+    - @articles.each_slice(3) do |slice|
+      %ul.list-inline
+        -slice.each do |article|
+          %li.news_thumb
+            - if article.image?
+              = image_tag article.image.url(:medium), class: "news_image"
+            - else
+              = image_tag "default_news_image", class: "news_image"
+            %h3.news_title= link_to article.title, news_article_path(article)

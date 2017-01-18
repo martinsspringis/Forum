@@ -1,38 +1,37 @@
-- if user_signed_in? && current_user.role == 3 && @user.role == 1 && @user.blocked == false
-  = link_to t(:give_moderator_permissions), increase_role_user_path(@user), method: :put, data: {confirm: "#{t(:are_you_sure)}?"}
-  %br
-- elsif user_signed_in? && current_user.role == 3 && @user.role == 2 && @user.blocked == false
-  = link_to t(:take_away_moderator_permissions), decrease_role_user_path(@user), method: :put, data: {confirm: "#{t(:are_you_sure)}?"}
-  %br
+.container
+  - if user_signed_in? && current_user.role == 3 && @user.role == 1 && @user.blocked == false
+    = link_to t(:give_moderator_permissions), increase_role_user_path(@user), method: :put, data: {confirm: "#{t(:are_you_sure)}?"}
+    %br
+  - elsif user_signed_in? && current_user.role == 3 && @user.role == 2 && @user.blocked == false
+    = link_to t(:take_away_moderator_permissions), decrease_role_user_path(@user), method: :put, data: {confirm: "#{t(:are_you_sure)}?"}
+    %br
 
 
-- if user_signed_in? && current_user.role >= 2 && @user.blocked == false && @user.role == 1
-  = link_to t(:block), block_user_path(@user), method: :put, data:{confirm: "#{t(:are_you_sure)}?"}
-- elsif user_signed_in? && current_user.role >= 2 && @user.blocked == true && @user.role == 1
-  = link_to t(:unblock), unblock_user_path(@user), method: :put, data:{confirm: "#{t(:are_you_sure)}?"}
+  - if user_signed_in? && current_user.role >= 2 && @user.blocked == false && @user.role == 1
+    = link_to t(:block), block_user_path(@user), method: :put, data:{confirm: "#{t(:are_you_sure)}?"}
+  - elsif user_signed_in? && current_user.role >= 2 && @user.blocked == true && @user.role == 1
+    = link_to t(:unblock), unblock_user_path(@user), method: :put, data:{confirm: "#{t(:are_you_sure)}?"}
 
-%h1= @user.nickname
+  %h1.text-center= @user.nickname
 
-- if @user.asset?
-  = image_tag @user.asset.url(:medium)
-- else
-  = image_tag "default_avatar.jpg", size: "240x240"
+  - if @user.asset?
+    = image_tag @user.asset.url(:medium), id:"avatar", class: "center-block"
+  - else
+    = image_tag "default_avatar.jpg", id: "avatar", class: "center-block"
 
-- if @user.blocked
-  %h1= t(:user_has_been_blocked)
--else
-  %h3= "#{t(:full_name)}: #{@user.full_name}"
-
-  %h2= "#{t(:articles)}: "
-  
-  %table
-    -unless @articles.any?
+  - if @user.blocked
+    %h1.text-center= t(:user_has_been_blocked)
+  -else
+    %h2.text-center= "#{t(:articles)}: "
+    
+    %table.table
+      -unless @articles.any?
+        %tr
+          %td No articles
       %tr
-        %td No articles
-    %tr
-      %th= t(:title)
-      %th= t(:replies)
-    - @articles.each do |article|
-      %tr
-        %td= article.title
-        %td= link_to article.replies.count, article_path(article), method: :get
+        %th= t(:title)
+        %th= t(:replies)
+      - @articles.each do |article|
+        %tr
+          %td= article.title
+          %td= link_to article.replies.count, article_path(article), method: :get

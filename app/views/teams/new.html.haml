@@ -1,12 +1,13 @@
-%h1= t(:add_team)
-- if @team.errors.any?
-  = pluralize(@team.errors.count, "error")
+.container
+  %h1= t(:add_team)
+  - if @team.errors.any?
+    = pluralize(@team.errors.count, "error")
 
-  %ul
-    - @team.errors.full_messages.each do |msg|
-      %li= msg
+    %ul
+      - @team.errors.full_messages.each do |msg|
+        %li= msg
 
-= simple_form_for @team do |f|
-  = f.input :name, label: "#{t(:name_of_the_team)}: "
-  = f.input :icon, label: "#{t(:team_logo)}: "
-  = f.button :submit, t(:add_team)
+  = simple_form_for @team do |f|
+    = f.input :name, label: "#{t(:name_of_the_team)}: "
+    = f.input :icon, label: "#{t(:team_logo)}: "
+    = f.button :submit, t(:add_team)
