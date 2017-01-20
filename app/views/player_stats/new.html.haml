@@ -2,6 +2,7 @@
 
 .container
   %h1= t(:new_player_stat)
+
   .new_stat
     = simple_form_for ([@game, @player_stat]) do |f|
       = f.label "#{t(:player)}", id: "select_label"
@@ -23,25 +24,31 @@
       = f.label "to"
       = f.label "fouls"
 
-      = f.input_field :player_id, collection: @players, id: "select_field"
-      = f.error :player_id
-      = f.input_field :min
-      = f.error :min
-      = f.input_field :sec
-      = f.input_field :pts
-      = f.input_field :fgm
-      = f.input_field :fga
-      = f.input_field :three_m
-      = f.input_field :three_a
-      = f.input_field :ftm
-      = f.input_field :fta
-      = f.input_field :eff_factor
-      = f.input_field :reb
-      = f.input_field :or
-      = f.input_field :ast
-      = f.input_field :blk
-      = f.input_field :stl
-      = f.input_field :to
-      = f.input_field :fouls
+      = f.input_field :player_id, collection: @players, id: "select_field", default: @players.first
+      = f.input_field :min, value: 0
+      = f.input_field :sec, value: 0
+      = f.input_field :pts, value: 0
+      = f.input_field :fgm, value: 0
+      = f.input_field :fga, value: 0
+      = f.input_field :three_m, value: 0
+      = f.input_field :three_a, value: 0
+      = f.input_field :ftm, value: 0
+      = f.input_field :fta, value: 0
+      = f.input_field :eff_factor, value: 0
+      = f.input_field :reb, value: 0
+      = f.input_field :or, value: 0
+      = f.input_field :ast, value: 0
+      = f.input_field :blk, value: 0
+      = f.input_field :stl, value: 0
+      = f.input_field :to, value: 0
+      = f.input_field :fouls, value: 0
       %br/
       = f.submit "#{t(:save)}", id: "save_player_stat"
+  
+  #error_explanation
+    - if @player_stat.errors.any?
+      %h2
+        = pluralize(@player_stat.errors.count, "error")
+      %ul
+        - @player_stat.errors.full_messages.each do |msg|
+          %li= msg

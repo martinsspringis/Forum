@@ -19,6 +19,7 @@ class PlayerStat < ActiveRecord::Base
 	validates :pts, numericality: {greater_than_or_equal_to: 0}
 	validates :min, numericality: {greater_than_or_equal_to: 0}
 	validates :sec, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 60}
+	validates :eff_factor, presence: true
 
 	def game_time
 		"#{min}:#{sec}"

@@ -53,9 +53,8 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 #for translations in simple forms
 gem 'rails-i18n'
-
-#gem for storing files on Amazon server
-gem 'aws-sdk'
+#for testing purposes
+gem 'rspec'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
