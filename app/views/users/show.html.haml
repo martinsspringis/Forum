@@ -1,3 +1,5 @@
+= render "shared/main_menu"
+
 .container
   - if user_signed_in? && current_user.role == 3 && @user.role == 1 && @user.blocked == false
     = link_to t(:give_moderator_permissions), increase_role_user_path(@user), method: :put, data: {confirm: "#{t(:are_you_sure)}?"}

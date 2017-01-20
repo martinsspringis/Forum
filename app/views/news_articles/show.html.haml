@@ -1,3 +1,5 @@
+= render "shared/main_menu"
+
 .container
   -if user_signed_in? && current_user.role == 3
     = link_to t(:delete_article), news_article_path(@article), method: :delete, data: {confirm: "#{t(:are_you_sure)}?"}

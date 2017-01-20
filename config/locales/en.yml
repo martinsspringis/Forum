@@ -24,6 +24,7 @@ en:
   change_language: "Changle language to"
   home: Home
   forum: Forum
+  author: "Author"
 
   pending_boxscores: "Pending game stats"
 
@@ -170,3 +171,5 @@ en:
   password_confirmation: "Password confirmation"
   avatar: "Avatar"
   sign_up: "Sign up"
+  time_played: "Time played"
+  player: "player"

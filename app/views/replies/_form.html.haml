@@ -1,12 +1,5 @@
 %h2= t(:new_reply)
 
-- if @reply.errors.any?
-  = pluralize(@reply.errors.count, "error")
-
-  %ul
-    - @reply.errors.full_messages.each do |msg|
-      %li= msg
-
 = simple_form_for([@article, @reply]) do |f|
   -unless user_signed_in?
     = f.input :author, label: "#{t(:author)}: "

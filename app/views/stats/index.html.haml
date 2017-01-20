@@ -1,41 +1,56 @@
-%div#stats_index
-  %h1= t(:player_stats)
+= render "shared/main_menu"
 
-  %table.table.table-hover
-    %tr
-      %th
-      %th= t(:player)
-      %th MPG
-      %th FG%
-      %th 3P%
-      %th FT%
-      %th PPG
-      %th RPG
-      %th APG
-      %th STL
-      %th BPG
-      - @players.each do |player|
-        %tr
-          -if player.player_stats.count > 0
-            %td= image_tag player.picture.url(:thumb), class: "player_thumb center-block" 
-            %td= link_to player.name, player_path(player)
-            %td= min_per_game(player.player_stats.sum(:min), player.player_stats.sum(:sec), player.player_stats.count)
-            %td= shooting_percentage(player.player_stats.sum(:fgm), player.player_stats.sum(:fga))
-            %td= shooting_percentage(player.player_stats.sum(:three_m), player.player_stats.sum(:three_a))
-            %td= shooting_percentage(player.player_stats.sum(:ftm), player.player_stats.sum(:fta))
-            %td= player.player_stats.average(:pts)
-            %td= player.player_stats.average(:reb)
-            %td= player.player_stats.average(:ast)
-            %td= player.player_stats.average(:stl)
-            %td= player.player_stats.average(:blk)
-  
-          -else
-            %td= player.name
-            %td 0.0
-            %td 0.0
-            %td 0.0
-            %td 0.0
-            %td 0.0
-            %td 0.0
-            %td 0.0
-            %td 0.0
+.container
+  %div#stats_index
+    %h1= t(:player_stats)
+
+    %table.table.table-hover
+      %tr
+        %th
+        %th= t(:player)
+        %th MPG
+        %th FG%
+        %th 3P%
+        %th FT%
+        %th PPG
+        %th RPG
+        %th APG
+        %th STL
+        %th BPG
+        %th +/-
+        - @players.each do |player|
+          %tr
+            -if player.player_stats.count > 0
+              %td= image_tag player.picture.url(:thumb), class: "player_thumb center-block" 
+              %td= link_to player.name, player_path(player)
+              %td= min_per_game(player.player_stats.sum(:min), player.player_stats.sum(:sec), player.player_stats.count)
+              %td= shooting_percentage(player.player_stats.sum(:fgm), player.player_stats.sum(:fga))
+              %td= shooting_percentage(player.player_stats.sum(:three_m), player.player_stats.sum(:three_a))
+              %td= shooting_percentage(player.player_stats.sum(:ftm), player.player_stats.sum(:fta))
+              %td= number_with_precision(player.player_stats.average(:pts), precision: 2)
+              %td= number_with_precision(player.player_stats.average(:reb), precision: 2)
+
+              %td= number_with_precision(player.player_stats.average(:ast), precision: 2)
+
+              %td= number_with_precision(player.player_stats.average(:stl), precision: 2)
+
+              %td= number_with_precision(player.player_stats.average(:blk), precision: 2)
+              %td= player.player_stats.count(:eff_factor)
+
+    
+            -else
+              - if player.picture?
+                %td= image_tag player.picture.url(:thumb), class: "player_thumb center-block"
+              - else 
+                = image_tag "default_player", class: "player_thumb center-block"
+              %td= link_to player.name, player_path(player)
+              %td -
+              %td -
+              %td -
+              %td -
+              %td -
+              %td -
+              %td -
+              %td -
+              %td -
+              %td -

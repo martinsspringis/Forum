@@ -1,3 +1,5 @@
+= render "shared/main_menu"
+
 .container
   -if user_signed_in? && current_user.role == 3
     = link_to t(:edit_player_profile), edit_player_path(@player)

@@ -1,3 +1,5 @@
+%script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
+
 %div.reply
   %div.content
     %div.author
@@ -14,5 +16,16 @@
     %div.created_at
       = format_time(reply.created_at) 
     %div
-      -if reply.persisted?
-        = link_to t(:to_reply), new_article_reply_path(@article, :parent_id => reply), class: "reply-button", rel: "facebox"
+      -if reply.persisted?       
+        %a{"data-toggle" => "collapse", :href => "##{reply.id}reply"}
+          = t(:to_reply)
+        .collapse{id: "#{reply.id}reply"}
+          %br
+          %strong= t(:reply)
+          = simple_form_for([@article, @reply]) do |f|
+            -unless user_signed_in?
+              = f.input :author, label: "#{t(:author)}: "
+            = f.input :parent_id, as: :hidden, input_html: { value: reply.id }
+            = f.input :content, label: "#{t(:reply)}: "
+            = f.input :image, label: "#{t(:choose_image)}: "
+            = f.button :submit, t(:post) 

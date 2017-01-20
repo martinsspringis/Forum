@@ -1,7 +1,7 @@
 module StatsHelper
   def min_per_game(min, sec, games)
   	average = (min * 60 + sec)/games.to_f
-  	average/60
+    number_with_precision(average/60, precision: 2) 
   end
 
   def shooting_percentage(made, attempted)

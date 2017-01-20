@@ -1,4 +1,6 @@
-%div.container#boxscore_new.text-center
+= render "shared/main_menu"
+
+.container#boxscore_new.text-center
   %h1= t(:fill_stats)
   %h2= "New York Knicks vs #{@game.team.name}"
   %h2= @game.date

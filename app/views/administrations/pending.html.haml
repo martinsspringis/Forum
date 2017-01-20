@@ -1,4 +1,6 @@
-.container.text-center#pending_games
+= render "shared/main_menu"
+
+.container.text-center
   %h1= t(:pending_boxscores)
 
   - @pending_boxscores.each do |p|

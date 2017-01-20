@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   helper FormattingHelper	
 
 	def index
-		@games = Game.all.where(hidden: false).order(date: :desc)
+		@games = Game.all.where(hidden: false).where.not(nyk_points: nil).order(date: :desc)
 	end
 
 	def show

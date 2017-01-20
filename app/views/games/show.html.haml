@@ -1,3 +1,5 @@
+= render "shared/main_menu"
+
 .container
   %div#game_show.text-center
     = image_tag "default_icon", class: "team_logo_show"    
@@ -40,7 +42,6 @@
             %th TO
             %th FOULS
             %th PTS
-            %th +/-
 
           - @game.player_stats.each do |player|
             - if player.player.team.id == 3
@@ -61,7 +62,6 @@
                 %td= player.to
                 %td= player.fouls
                 %td= player.pts
-                %td= player.eff_factor
 
       %br
       - if @game.player_stats.count > 0
@@ -84,7 +84,6 @@
             %th TO
             %th FOULS
             %th PTS
-            %th +/-
 
           - @game.player_stats.each do |player|
             - if player.player.team == @game.team
@@ -105,4 +104,3 @@
                 %td= player.to
                 %td= player.fouls
                 %td= player.pts
-                %td= player.eff_factor

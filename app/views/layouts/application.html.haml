@@ -3,7 +3,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title NYK
     %script{:src => "http://twitter.github.io/bootstrap/dist/js/bootstrap.js"}
-
+    %link{:href => "https://fonts.googleapis.com/css?family=Anton|Open+Sans+Condensed:300", :rel => "stylesheet"}/
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -15,35 +15,6 @@
         = image_tag "skin#{current_user.skin_id}", class: "background_img"
     -else
       = image_tag "skin6", class: "background_img"
-    %div
-      = image_tag "knicksand1", id: "nyk_banner"
-      
-      %ul.list-inline#navigation
-        %li= link_to t(:home), root_path
-        %li= link_to t(:forum), articles_path
-        %li= link_to t(:news), news_articles_path
-        %li= link_to t(:gallery), galleries_path
-        %li= link_to t(:games), games_path
-        %li= link_to t(:player_stats), stats_path
-        %li= link_to t(:administration), administrations_path if current_user && current_user.role >= 2
-    %div#authorization
-      -if user_signed_in?
-        -if current_user.nickname
-          = link_to "#{t(:hello)}, #{current_user.nickname}", edit_user_path(current_user)
-        -else
-          = link_to "#{t(:hello)}, #{current_user.email}", edit_user_path(current_user)
-        = link_to t(:log_out), destroy_user_session_path, method: :delete
-      -else
-        = link_to t(:log_in), new_user_session_path
-        = link_to t(:sign_up), new_user_registration_path
-    
-    %div#languages
-      %p
-        = "#{t(:change_language)}: "
-        - if I18n.locale == I18n.default_locale
-          = link_to t(:latvian), :locale=> 'lv'
-        -else
-          = link_to t(:english), :locale=> 'en'
 
     %p.notice= notice
     %p.alert= alert
